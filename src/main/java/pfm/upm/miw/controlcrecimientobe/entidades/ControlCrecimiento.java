@@ -76,6 +76,6 @@ public class ControlCrecimiento implements Serializable {
     public String toString() {
         return "ControlCrecimiento [id=" + id + ", edad=" + edad + ", peso=" + peso + ", talla=" + talla + ", fechaRegistro="
                 + fechaRegistro + ", persona=" + persona + "]";
-    }
+    } 
 
 }
