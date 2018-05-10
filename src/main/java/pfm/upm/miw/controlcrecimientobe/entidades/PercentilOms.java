@@ -20,11 +20,11 @@ public class PercentilOms implements Serializable {
 
     private String tipoPercenetil; // Peso, Talla, IMC
 
-    private BigDecimal indicadorSimetriaL;
+    private BigDecimal indicadorSimetria;
 
-    private BigDecimal medianaM;
+    private BigDecimal mediana;
 
-    private BigDecimal coeficienteVariacionS;
+    private BigDecimal coeficienteVariacion;
 
     private BigDecimal percentil3;
 
