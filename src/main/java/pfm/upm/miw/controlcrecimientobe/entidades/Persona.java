@@ -27,9 +27,28 @@ public class Persona implements Serializable {
 
     private Date fechaRegistro;
 
+    private Boolean active;
+
     private int idUsuario;
 
     public Persona() {
+
+        this.fechaRegistro = new Date();
+        this.active = true;
+
+    }
+
+    public Persona(int id, String nombre, String apellido, Date fechaNacimiento, String genero, String grupoSanguineo, String foto,
+            int idUsuario) {
+        this();
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+        this.genero = genero;
+        this.grupoSanguineo = grupoSanguineo;
+        this.foto = foto;
+        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {
@@ -96,6 +115,14 @@ public class Persona implements Serializable {
         this.idUsuario = idUsuario;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     public int getId() {
         return id;
     }
@@ -103,8 +130,30 @@ public class Persona implements Serializable {
     @Override
     public String toString() {
         return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", genero="
-                + genero + ", grupoSanguineo=" + grupoSanguineo + ", foto=" + foto + ", fechaRegistro=" + fechaRegistro + ", idUsuario="
-                + idUsuario + "]";
+                + genero + ", grupoSanguineo=" + grupoSanguineo + ", foto=" + foto + ", fechaRegistro=" + fechaRegistro + ", active="
+                + active + ", idUsuario=" + idUsuario + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + id;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Persona other = (Persona) obj;
+        if (id != other.id)
+            return false;
+        return true;
     }
 
 }
