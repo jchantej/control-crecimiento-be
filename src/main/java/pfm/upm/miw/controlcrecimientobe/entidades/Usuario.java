@@ -32,6 +32,18 @@ public class Usuario implements Serializable {
     private Date fechaRegistro;
 
     public Usuario() {
+        this.fechaRegistro = new Date();
+        this.activo = true;
+    }
+
+    public Usuario(String username, String password, String nombre, String apellido, String correo, String foto) {
+        this();
+        this.username = username;
+        this.password = password;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.foto = foto;
     }
 
     public String getUsername() {
@@ -106,6 +118,28 @@ public class Usuario implements Serializable {
     public String toString() {
         return "Usuario [id=" + id + ", username=" + username + ", password=" + password + ", nombre=" + nombre + ", apellido=" + apellido
                 + ", correo=" + correo + ", foto=" + foto + ", activo=" + activo + ", fechaRegistro=" + fechaRegistro + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + id;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Usuario other = (Usuario) obj;
+        if (id != other.id)
+            return false;
+        return true;
     }
 
 }

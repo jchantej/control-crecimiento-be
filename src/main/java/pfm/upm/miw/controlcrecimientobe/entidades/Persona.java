@@ -27,21 +27,20 @@ public class Persona implements Serializable {
 
     private Date fechaRegistro;
 
-    private Boolean active;
+    private Boolean activo;
 
     private int idUsuario;
 
     public Persona() {
 
         this.fechaRegistro = new Date();
-        this.active = true;
+        this.activo = true;
 
     }
 
-    public Persona(int id, String nombre, String apellido, Date fechaNacimiento, String genero, String grupoSanguineo, String foto,
+    public Persona(String nombre, String apellido, Date fechaNacimiento, String genero, String grupoSanguineo, String foto,
             int idUsuario) {
         this();
-        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
@@ -116,11 +115,11 @@ public class Persona implements Serializable {
     }
 
     public Boolean getActive() {
-        return active;
+        return activo;
     }
 
     public void setActive(Boolean active) {
-        this.active = active;
+        this.activo = active;
     }
 
     public int getId() {
@@ -131,7 +130,7 @@ public class Persona implements Serializable {
     public String toString() {
         return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", genero="
                 + genero + ", grupoSanguineo=" + grupoSanguineo + ", foto=" + foto + ", fechaRegistro=" + fechaRegistro + ", active="
-                + active + ", idUsuario=" + idUsuario + "]";
+                + activo + ", idUsuario=" + idUsuario + "]";
     }
 
     @Override
