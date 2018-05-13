@@ -1,15 +1,16 @@
 package pfm.upm.miw.controlcrecimientobe.recursos;
 
-import javax.validation.Valid;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pfm.upm.miw.controlcrecimientobe.cotroladores.PersonaCotroller;
+import pfm.upm.miw.controlcrecimientobe.cotroladores.PersonaController;
 import pfm.upm.miw.controlcrecimientobe.dtos.PersonaDto;
+import pfm.upm.miw.controlcrecimientobe.entidades.Persona;
 
 
 
@@ -21,13 +22,19 @@ public class PersonaRecurso {
 
 
     @Autowired
-    private PersonaCotroller personaController;
+    private PersonaController personaController;
 
     @PostMapping
-    public void crearPersona(@Valid @RequestBody PersonaDto personaDto)  {
+    public void crearPersona(@RequestBody PersonaDto personaDto)  {
 
         this.personaController.crearPersona(personaDto);
     }
+    
+    @GetMapping
+    public List<Persona> getPersonas(){
+      return  this.personaController.getPersonas();
+    }
+
 
 
 }
