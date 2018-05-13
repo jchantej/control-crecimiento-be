@@ -30,17 +30,15 @@ public class Persona implements Serializable {
     private Boolean activo;
 
     private int idUsuario;
-
+    
     public Persona() {
-
-        this.fechaRegistro = new Date();
-        this.activo = true;
 
     }
 
+
+
     public Persona(String nombre, String apellido, Date fechaNacimiento, String genero, String grupoSanguineo, String foto,
             int idUsuario) {
-        this();
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
@@ -48,6 +46,8 @@ public class Persona implements Serializable {
         this.grupoSanguineo = grupoSanguineo;
         this.foto = foto;
         this.idUsuario = idUsuario;
+        this.fechaRegistro = new Date();
+        this.activo = true;
     }
 
     public String getNombre() {

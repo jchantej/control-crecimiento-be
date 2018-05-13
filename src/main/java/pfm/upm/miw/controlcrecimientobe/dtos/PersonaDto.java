@@ -25,10 +25,7 @@ public class PersonaDto {
     private int idUsuario;
 
     public PersonaDto() {
-
-        this.fechaRegistro = new Date();
-        this.activo = true;
-
+        // Empty for framework
     }
 
     public PersonaDto(String nombre, String apellido, Date fechaNacimiento, String genero, String grupoSanguineo, String foto, int idUsuario) {
