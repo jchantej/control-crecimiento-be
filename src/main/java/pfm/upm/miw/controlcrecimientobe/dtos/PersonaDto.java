@@ -1,16 +1,9 @@
-package pfm.upm.miw.controlcrecimientobe.entidades;
+package pfm.upm.miw.controlcrecimientobe.dtos;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-public class Persona implements Serializable {
+public class PersonaDto {
 
-    private static final long serialVersionUID = -7750270148622468152L;
-
-    @Id
-    @GeneratedValue
     private int id;
 
     private String nombre;
@@ -30,15 +23,13 @@ public class Persona implements Serializable {
     private Boolean activo;
 
     private int idUsuario;
-    
-    public Persona() {
 
+    public PersonaDto() {
+        // Empty for framework
     }
 
-
-
-    public Persona(String nombre, String apellido, Date fechaNacimiento, String genero, String grupoSanguineo, String foto,
-            int idUsuario) {
+    public PersonaDto(String nombre, String apellido, Date fechaNacimiento, String genero, String grupoSanguineo, String foto, int idUsuario) {
+        this();
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
@@ -46,8 +37,6 @@ public class Persona implements Serializable {
         this.grupoSanguineo = grupoSanguineo;
         this.foto = foto;
         this.idUsuario = idUsuario;
-        this.fechaRegistro = new Date();
-        this.activo = true;
     }
 
     public String getNombre() {
@@ -131,28 +120,6 @@ public class Persona implements Serializable {
         return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", genero="
                 + genero + ", grupoSanguineo=" + grupoSanguineo + ", foto=" + foto + ", fechaRegistro=" + fechaRegistro + ", active="
                 + activo + ", idUsuario=" + idUsuario + "]";
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + id;
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Persona other = (Persona) obj;
-        if (id != other.id)
-            return false;
-        return true;
     }
 
 }
