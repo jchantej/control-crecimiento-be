@@ -1,0 +1,36 @@
+# RECOMENDABLE SOLO AÑADIR 
+# Usuario
+usuarioList:
+  - &us1
+    username: test1
+    password: test1
+    nombre: test1
+    apellido: test1
+    correo: test1@gmail.com
+    foto: test1.jpg
+  - &us2
+    username: test2
+    password: test2
+    nombre: test2
+    apellido: test2
+    correo: test2@gmail.com
+    foto: test2.jpg
+       
+# Personas
+personaList:
+  - &pe1
+    nombre: test1
+    apellido: test1
+    fechaNacimiento: 2018-01-06 12:00:23
+    genero: M
+    grupoSanguineo: ORH+
+    foto: test1.jpg
+    idUsuario: 1
+  - &pr2
+    nombre: test2
+    apellido: test2
+    fechaNacimiento: 2018-01-06 12:00:23
+    genero: F
+    grupoSanguineo: ORH+
+    foto: test2.jpg
+    idUsuario: 1
