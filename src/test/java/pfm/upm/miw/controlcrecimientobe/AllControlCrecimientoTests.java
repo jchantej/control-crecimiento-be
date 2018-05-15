@@ -7,13 +7,15 @@ import org.junit.runners.Suite.SuiteClasses;
 import pfm.upm.miw.controlcrecimientobe.cotroladores.AllCotrollersIntegrationTests;
 import pfm.upm.miw.controlcrecimientobe.daos.AllDaosIntegrationTests;
 import pfm.upm.miw.controlcrecimientobe.entidades.AllEntidadesTests;
+import pfm.upm.miw.controlcrecimientobe.recursos.AllRecursosFunctionalTests;
 
 
 @RunWith(Suite.class)
 @SuiteClasses({
     AllEntidadesTests.class,
     AllDaosIntegrationTests.class, 
-    AllCotrollersIntegrationTests.class
+    AllCotrollersIntegrationTests.class,
+    AllRecursosFunctionalTests.class
 })
 public class AllControlCrecimientoTests {
        
