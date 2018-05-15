@@ -8,6 +8,7 @@ import pfm.upm.miw.controlcrecimientobe.cotroladores.AllCotrollersIntegrationTes
 import pfm.upm.miw.controlcrecimientobe.daos.AllDaosIntegrationTests;
 import pfm.upm.miw.controlcrecimientobe.entidades.AllEntidadesTests;
 import pfm.upm.miw.controlcrecimientobe.recursos.AllRecursosFunctionalTests;
+import pfm.upm.miw.controlcrecimientobe.servicios.AllServiciosIntegrationTests;
 
 
 @RunWith(Suite.class)
@@ -15,7 +16,8 @@ import pfm.upm.miw.controlcrecimientobe.recursos.AllRecursosFunctionalTests;
     AllEntidadesTests.class,
     AllDaosIntegrationTests.class, 
     AllCotrollersIntegrationTests.class,
-    AllRecursosFunctionalTests.class
+    AllRecursosFunctionalTests.class,
+    AllServiciosIntegrationTests.class
 })
 public class AllControlCrecimientoTests {
        

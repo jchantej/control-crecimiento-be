@@ -2,11 +2,12 @@ package pfm.upm.miw.controlcrecimientobe.recursos;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import pfm.upm.miw.controlcrecimientobe.cotroladores.PersonaController;
 import pfm.upm.miw.controlcrecimientobe.dtos.PersonaDto;
@@ -24,7 +25,7 @@ public class PersonaRecurso {
     @Autowired
     private PersonaController personaController;
 
-    @PostMapping
+    @RequestMapping(method = RequestMethod.POST)
     public void crearPersona(@RequestBody PersonaDto personaDto)  {
 
         this.personaController.crearPersona(personaDto);
