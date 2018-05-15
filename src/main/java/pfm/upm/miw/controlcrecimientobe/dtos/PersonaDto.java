@@ -28,7 +28,8 @@ public class PersonaDto {
         // Empty for framework
     }
 
-    public PersonaDto(String nombre, String apellido, Date fechaNacimiento, String genero, String grupoSanguineo, String foto, int idUsuario) {
+    public PersonaDto(String nombre, String apellido, Date fechaNacimiento, String genero, String grupoSanguineo, String foto,
+            int idUsuario) {
         this();
         this.nombre = nombre;
         this.apellido = apellido;
