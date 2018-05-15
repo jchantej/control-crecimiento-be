@@ -29,7 +29,7 @@ script:
 - mvn -Dtest=**/*Test test
 # Integration Test
 - if [ $TRAVIS_TEST_RESULT == 0 ];
-     then  mvn -Dtest=**/*IT package; 
+     then  mvn -Dtest=**/*IT package;
      else  echo "ERRORES!!! ... se abortan resto de test"; 
   fi
 # Functional Testing
