@@ -14,6 +14,7 @@ public class PersonaTest {
         assertEquals("Pablo", persona.getNombre());
         assertEquals("Jimenez", persona.getApellido());
         assertEquals("M", persona.getGenero());
+        assertEquals("ORH+", persona.getGrupoSanguineo());
     } 
 
 }
