@@ -33,7 +33,7 @@ public class RestBuilder<T> {
 
     private int port;
 
-    private String path;
+    private String path; 
 
     private List<Object> expandList;
 
