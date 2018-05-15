@@ -12,7 +12,7 @@ notifications:
 services:
   - mysql
 before_install:
-	- mysql -e 'CREATE DATABASE IF NOT EXISTS test-db;'
+	- mysql -e 'CREATE DATABASE IF NOT EXISTS test-db;' 
 script:
 # Test
 - mvn -Dtest=**/*Test test
