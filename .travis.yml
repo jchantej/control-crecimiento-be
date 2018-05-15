@@ -35,7 +35,7 @@ script:
 # Functional Testing
 - if [ $TRAVIS_TEST_RESULT == 0 ];
      then  mvn -Dtest=**/*FunctionalTesting verify;
-     else  echo "ERRORES!!! ... se abortan resto de test"; 
+     else  echo "ERRORES!!! ... se abortan resto de test";  
   fi
 # Sonarcloud
 - mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify
