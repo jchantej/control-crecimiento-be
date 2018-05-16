@@ -11,6 +11,9 @@ notifications:
     - jcchantej@gmail.com
 services:
   - mysql
+
+before_script:
+  - mysql -e 'create database control_crecimiento_db;'  
 sudo: true  
 addons:
   apt:
