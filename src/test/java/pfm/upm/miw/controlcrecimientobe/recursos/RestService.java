@@ -12,7 +12,7 @@ public class RestService {
     @Autowired
     private Environment environment;
 
-    @Value("${server.contextPath}")
+    @Value("${server.servlet.context-path}")
     private String contextPath;
 
 

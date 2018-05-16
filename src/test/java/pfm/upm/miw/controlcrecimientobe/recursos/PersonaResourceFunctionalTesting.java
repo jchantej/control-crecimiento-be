@@ -44,9 +44,7 @@ public class PersonaResourceFunctionalTesting {
 
     @Test
     public void testCrearPersona() {
-        
-        //restService.restBuilder().path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
-        System.out.println("test");
+        restService.restBuilder().path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
     }
 
 }
