@@ -20,10 +20,47 @@ public class PersonaController {
 
         this.personaDao.save(persona);
     }
+    
 
     public List<Persona> getPersonas() {
         
         return this.personaDao.findAll();
     }
+    
+    
+    
+    public boolean notNombre(PersonaDto personaDto) {
+       return personaDto.getNombre() == null || personaDto.getNombre().equals("");
+
+    }
+    
+    public boolean notApellido(PersonaDto personaDto) {
+        return personaDto.getApellido() == null || personaDto.getApellido().equals("");
+
+     }
+    
+    public boolean notFechaNacimiento(PersonaDto personaDto) {
+        return personaDto.getFechaNacimiento() == null || personaDto.getFechaNacimiento().equals("");
+
+     }
+    
+    public boolean notGenero(PersonaDto personaDto) {
+        return personaDto.getGenero() == null || personaDto.getGenero().equals("");
+
+     }
+    
+    public boolean notGrupoSanguineo(PersonaDto personaDto) {
+        return personaDto.getGrupoSanguineo() == null || personaDto.getGrupoSanguineo().equals("");
+
+     }
+    
+    public boolean notIdUsuario(PersonaDto personaDto) {
+        return personaDto.getIdUsuario() <= 0 ;
+
+     }
+    public boolean notDataPersona(PersonaDto personaDto) {
+        return personaDto.equals(null) ;
+
+     }
 
 }

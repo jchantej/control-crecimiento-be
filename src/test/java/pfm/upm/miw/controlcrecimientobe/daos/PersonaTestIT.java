@@ -1,6 +1,7 @@
 package pfm.upm.miw.controlcrecimientobe.daos;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+
 import java.util.Date;
 import org.junit.After;
 import org.junit.Before;
@@ -33,17 +34,28 @@ public class PersonaTestIT {
 
         this.usuario = new Usuario("test@test.com", "test", "test", "test", "test@test.com", "test.jpg");
         iUsuarioDao.save(usuario);
-
+        
         this.persona = new Persona("Pablo", "Jimenez", new Date(), "M", "ORH+", "toni.jpg", this.usuario.getId());
         this.iPersonaDao.save(persona);
 
     }
 
     @Test
+    public void crearPersona() {
+
+        this.persona = new Persona("Pablo", "Jimenez", new Date(), "M", "ORH+", "toni.jpg", this.usuario.getId());
+        this.iPersonaDao.save(persona);
+        assertNotNull(iPersonaDao.findById(this.persona.getId()).get().getNombre());
+        assertEquals("Jimenez", iPersonaDao.findById(this.persona.getId()).get().getApellido());
+        assertEquals("M", iPersonaDao.findById(this.persona.getId()).get().getGenero());
+        assertEquals("ORH+", iPersonaDao.findById(this.persona.getId()).get().getGrupoSanguineo());
+
+    }
+
+    @Test
     public void testFindById() {
-
+        assertNotNull(iPersonaDao.findById(this.persona.getId()).get().getNombre());
         assertEquals("Pablo", iPersonaDao.findById(this.persona.getId()).get().getNombre());
-
     }
 
     @After
