@@ -5,18 +5,18 @@ Aplicación para llevar un cotrol del crecimiento de los niños y niñas, enfoca
 #### Back-end con Tecnologías de Código Abierto (SPRING)
 #### [Máster en Ingeniería Web por la U.P.M.](http://miw.etsisi.upm.es)
 
-[![Build Status](https://travis-ci.org/jchantej/control-crecimiento-be.svg?branch=develop)](https://travis-ci.org/jchantej/control-crecimiento-be)
+[![Build Status](https://travis-ci.org/jchantej/control-crecimiento-be.svg?branch=develop)](https://travis-ci.org/jchantej/control-crecimiento-be)  
 
-> Proyecto Back-end completo para el uso de la tecnología Spring.  
+> Proyecto Back-end completo para el uso de la tecnología Spring.    
 > El Front-end se implementara en Angular V5,  repositorio Front End [betca-tpv-angular](https://github.com/jchantej/control-crecimiento-fe).  
-> ------
+>  
 
 ### Tecnologías Utilizadas
-* Java
-* Maven
-* Spring
+* Java  
+* Maven  
+* Spring  
 * MySql  
 
 
-###### Autor: Juan Pablo Jiménez Ramos  U.P.M.  
-###### U.P.M. MIW - Proyecto final de Máster  
+> ###### Autor: Juan Pablo Jiménez Ramos  U.P.M.  
+> ###### U.P.M. MIW - Proyecto final de Máster  
