@@ -26,7 +26,18 @@ public class ControlCrecimiento implements Serializable {
     private Persona persona;
 
     public ControlCrecimiento() {
+        this.fechaRegistro = new Date();
     }
+      
+    public ControlCrecimiento(int edad, BigDecimal peso, BigDecimal talla,Persona persona) {
+        this();
+        this.edad = edad;
+        this.peso = peso;
+        this.talla = talla;
+        this.persona = persona;
+    }
+
+
 
     public int getEdad() {
         return edad;
@@ -76,6 +87,30 @@ public class ControlCrecimiento implements Serializable {
     public String toString() {
         return "ControlCrecimiento [id=" + id + ", edad=" + edad + ", peso=" + peso + ", talla=" + talla + ", fechaRegistro="
                 + fechaRegistro + ", persona=" + persona + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + id;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ControlCrecimiento other = (ControlCrecimiento) obj;
+        if (id != other.id)
+            return false;
+        return true;
     } 
+    
+    
 
 }
