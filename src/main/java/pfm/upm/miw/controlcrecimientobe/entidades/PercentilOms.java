@@ -7,13 +7,15 @@ import java.util.Date;
 
 @Entity
 public class PercentilOms implements Serializable {
-    private static final long serialVersionUID = 1L;
+
+
+    private static final long serialVersionUID = 3687215337326275362L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String edad;
+    private int edad;
 
     private String genero;
 
@@ -38,13 +40,35 @@ public class PercentilOms implements Serializable {
     private Date fechaRegistro;
 
     public PercentilOms() {
+        this.fechaRegistro = new Date();
+    }
+    
+    
+
+    public PercentilOms(int edad, String genero, String tipoPercenetil, BigDecimal indicadorSimetria, BigDecimal mediana,
+            BigDecimal coeficienteVariacion, BigDecimal percentil3, BigDecimal percentil15, BigDecimal percentil50, BigDecimal percentil85,
+            BigDecimal percentil97) {
+        this();
+        this.edad = edad;
+        this.genero = genero;
+        this.tipoPercenetil = tipoPercenetil;
+        this.indicadorSimetria = indicadorSimetria;
+        this.mediana = mediana;
+        this.coeficienteVariacion = coeficienteVariacion;
+        this.percentil3 = percentil3;
+        this.percentil15 = percentil15;
+        this.percentil50 = percentil50;
+        this.percentil85 = percentil85;
+        this.percentil97 = percentil97;
     }
 
-    public String getEdad() {
+
+
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 
@@ -147,5 +171,32 @@ public class PercentilOms implements Serializable {
                 + ", percentil3=" + percentil3 + ", percentil15=" + percentil15 + ", percentil50=" + percentil50 + ", percentil85="
                 + percentil85 + ", percentil97=" + percentil97 + ", fechaRegistro=" + fechaRegistro + "]";
     }
+
+
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + id;
+        return result;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        PercentilOms other = (PercentilOms) obj;
+        if (id != other.id)
+            return false;
+        return true;
+    }
+    
+    
 
 }

@@ -34,3 +34,54 @@ personaList:
     grupoSanguineo: ORH+
     foto: test2.jpg
     idUsuario: 1
+
+# PercentilesOSM
+percentilOmsList:
+  - &poms1
+    edad: 0
+    genero: M
+    tipoPercenetil: P	
+    indicadorSimetria: 0.3487
+    mediana: 3.3464
+    coeficienteVariacion: 0.14602
+    percentil3: 2.507
+    percentil15: 2.865
+    percentil50: 3.346
+    percentil85: 3.878
+    percentil97: 4.35
+  - &poms2
+    edad: 0
+    genero: F
+    tipoPercenetil: P	
+    indicadorSimetria: 0.3487
+    mediana: 3.3464
+    coeficienteVariacion: 0.14602
+    percentil3: 2.507
+    percentil15: 2.865
+    percentil50: 3.346
+    percentil85: 3.878
+    percentil97: 4.3
+  - &poms3
+    edad: 0
+    genero: M
+    tipoPercenetil: T	
+    indicadorSimetria: 0.3487
+    mediana: 3.3464
+    coeficienteVariacion: 0.14602
+    percentil3: 2.507
+    percentil15: 2.865
+    percentil50: 3.346
+    percentil85: 3.878
+    percentil97: 4.3
+  - &poms4
+    edad: 0
+    genero: F
+    tipoPercenetil: T	
+    indicadorSimetria: 0.3487
+    mediana: 3.3464
+    coeficienteVariacion: 0.14602
+    percentil3: 2.507
+    percentil15: 2.865
+    percentil50: 3.346
+    percentil85: 3.878
+    percentil97: 4.3

@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
+import pfm.upm.miw.controlcrecimientobe.daos.IControlCrecimientoDao;
+import pfm.upm.miw.controlcrecimientobe.daos.IPercentilOmsDao;
 import pfm.upm.miw.controlcrecimientobe.daos.IPersonaDao;
 import pfm.upm.miw.controlcrecimientobe.daos.IUsuarioDao;
 import pfm.upm.miw.controlcrecimientobe.entidades.Usuario;
@@ -35,6 +37,12 @@ public class DatabaseSeederService {
 
     @Autowired
     private IPersonaDao iPersonaDao;
+    
+    @Autowired
+    private IControlCrecimientoDao iControlCrecimientoDao;
+    
+    @Autowired
+    private IPercentilOmsDao iPercentilOmsDao ;
 
     @PostConstruct
     public void seedDatabase() {
@@ -64,6 +72,10 @@ public class DatabaseSeederService {
         if (tpvGraph.getPersonaList() != null) {
             this.iPersonaDao.saveAll(tpvGraph.getPersonaList());
         }
+        if (tpvGraph.getPersonaList() != null) {
+            this.iPercentilOmsDao.saveAll(tpvGraph.getPercentilOmsList());
+        }
+        
       
         // -----------------------------------------------------------------------
 
@@ -74,6 +86,9 @@ public class DatabaseSeederService {
         LogManager.getLogger(this.getClass()).warn("------------------------- delete All And Create Admin-----------");
         // Delete Repositories -----------------------------------------------------
         this.iUsuarioDao.deleteAll();
+        //TODO: Aqui Dao de PercentilCremmiento
+        this.iPercentilOmsDao.deleteAll();
+        this.iControlCrecimientoDao.deleteAll();
         this.iPersonaDao.deleteAll();
 
         this.createAdminIfNotExist();
