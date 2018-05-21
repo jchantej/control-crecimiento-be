@@ -67,12 +67,13 @@ public class PercentilCrecimientoTestIT {
 
         percentilesOmss = iPercentilOmsDao.findByEdadAndGenero(edadTotalDias, this.persona.getGenero());
 
-        iControlCrecimientoDao.save(this.controlCrecimiento);
+      
         for (PercentilOms percentilOms : percentilesOmss) {
-            percentilesCrecimiento.add(new PercentilCrecimiento(iControlCrecimientoDao.save(this.controlCrecimiento), percentilOms,
+            percentilesCrecimiento.add(new PercentilCrecimiento(this.controlCrecimiento, percentilOms,
                     "observacion", "recomendacion"));
         }
-
+        
+        iControlCrecimientoDao.save(this.controlCrecimiento);
         iPercentilCrecimientoDao.saveAll(percentilesCrecimiento);
          
          assertNotNull(iPercentilCrecimientoDao.findById(percentilesCrecimiento.get(0).getId())); 
