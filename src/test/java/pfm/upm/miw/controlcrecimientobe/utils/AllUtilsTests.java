@@ -1,4 +1,4 @@
-package pfm.upm.miw.controlcrecimientobe.servicios;
+package pfm.upm.miw.controlcrecimientobe.utils;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -8,9 +8,9 @@ import pfm.upm.miw.controlcrecimientobe.utils.CalculoEdadTest;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-    DatabaseSeederServiceIT.class,    
+    CalculoEdadTest.class,    
 })
 
-public class AllServiciosIntegrationTests {
+public class AllUtilsTests {
 
 }
