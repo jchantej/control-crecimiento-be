@@ -1,4 +1,4 @@
-package pfm.upm.miw.controlcrecimientobe.servicios;
+package pfm.upm.miw.controlcrecimientobe.utils;
 
 import static org.junit.Assert.*;
 
@@ -9,35 +9,36 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
+import pfm.upm.miw.controlcrecimientobe.utils.CalculoEdad;
 
-public class EdadServiceTest {
+
+public class CalculoEdadTest {
     
-   // @Autowired
-    EdadService edadService;
+    CalculoEdad calculoEdad;
     
     @Before
     public void setData() {
-        edadService = new EdadService(new Date("1990/11/25"));
+        calculoEdad = new CalculoEdad(new Date("1990/11/25"));
     }
     
    @Test 
    public void  testGetEdadPeriodoDias() {
-       assertEquals(this.edadService.getEdadPeriodoDias(), this.edadService.getEdadPeriodoDias());
+       assertEquals(this.calculoEdad.getEdadPeriodoDias(), this.calculoEdad.getEdadPeriodoDias());
    }
    
    @Test 
    public void  testGetEdadPeriodoMeses() {
-       assertEquals(this.edadService.getEdadPeriodoMeses(), this.edadService.getEdadPeriodoMeses());
+       assertEquals(this.calculoEdad.getEdadPeriodoMeses(), this.calculoEdad.getEdadPeriodoMeses());
    }
    
    @Test 
    public void  testGetEdadPeriodoAnios() {
-       assertEquals(this.edadService.getEdadPeriodoAnios(), this.edadService.getEdadPeriodoAnios());
+       assertEquals(this.calculoEdad.getEdadPeriodoAnios(), this.calculoEdad.getEdadPeriodoAnios());
    }
    
    @Test 
    public void  testGetEdadTotalDias() {
-       assertEquals(this.edadService.getEdadTotalDias(), this.edadService.getEdadTotalDias());
+       assertEquals(this.calculoEdad.getEdadTotalDias(), this.calculoEdad.getEdadTotalDias());
    }
    
 

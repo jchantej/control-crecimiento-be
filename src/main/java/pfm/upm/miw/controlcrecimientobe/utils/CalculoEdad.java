@@ -1,20 +1,21 @@
-package pfm.upm.miw.controlcrecimientobe.servicios;
+package pfm.upm.miw.controlcrecimientobe.utils;
 
 import java.util.Date;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
+import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
-public class EdadService {
+public class CalculoEdad {
 
     private Date fechaNacimiento;
 
-    public EdadService(Date fechaNacimiento) {
+    public CalculoEdad(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -57,10 +58,6 @@ public class EdadService {
 
        return Period.between(fechaNacimientoTemporal, ahora);
 
-      /*  DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate fechaNacimientoTemporal = LocalDate.parse("2016/03/20", fmt);
-        LocalDate fechaActual = LocalDate.now();
-        return Period.between(fechaNacimientoTemporal, fechaActual);*/
 
     }
 
