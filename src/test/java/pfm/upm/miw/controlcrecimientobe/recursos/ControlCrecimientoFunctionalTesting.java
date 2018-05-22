@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import pfm.upm.miw.controlcrecimientobe.daos.IPersonaDao;
@@ -47,6 +48,27 @@ public class ControlCrecimientoFunctionalTesting {
 
     @Test
     public void testCrearControlCrecimiento() {
+        restService.restBuilder().path(ControlCrecimientoRecurso.CONTROLES).body(this.controlCrecimientoDto).post().build();
+    }
+    
+    @Test
+    public void testControlCrecimientoNotIdPersonaException() {
+        thrown.expect(new HttpMatcher(HttpStatus.BAD_REQUEST));
+        this.controlCrecimientoDto.setIdPersona(0);
+        restService.restBuilder().path(ControlCrecimientoRecurso.CONTROLES).body(this.controlCrecimientoDto).post().build();
+    }
+    
+    @Test
+    public void testControlCrecimientoNotTallaException() {
+        thrown.expect(new HttpMatcher(HttpStatus.BAD_REQUEST));
+        this.controlCrecimientoDto.setTalla(new BigDecimal(0));;
+        restService.restBuilder().path(ControlCrecimientoRecurso.CONTROLES).body(this.controlCrecimientoDto).post().build();
+    }
+    
+    @Test
+    public void testControlCrecimientoNotPesoException() {
+        thrown.expect(new HttpMatcher(HttpStatus.BAD_REQUEST));
+        this.controlCrecimientoDto.setPeso(null);
         restService.restBuilder().path(ControlCrecimientoRecurso.CONTROLES).body(this.controlCrecimientoDto).post().build();
     }
     

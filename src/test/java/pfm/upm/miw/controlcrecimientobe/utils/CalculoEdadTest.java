@@ -2,8 +2,6 @@ package pfm.upm.miw.controlcrecimientobe.utils;
 
 import static org.junit.Assert.*;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.junit.Before;

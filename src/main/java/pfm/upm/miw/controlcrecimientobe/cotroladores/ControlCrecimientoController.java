@@ -75,4 +75,19 @@ public class ControlCrecimientoController {
         return this.iControlCrecimientoDao.findByPersonaId(idPersona);
     }
 
+    public boolean notTalla(ControlCrecimientoDto controlCrecimientoDto) {
+        return controlCrecimientoDto.getTalla() == null || controlCrecimientoDto.getTalla().intValue() <= 0;
+
+    }
+
+    public boolean notPeso(ControlCrecimientoDto controlCrecimientoDto) {
+        return controlCrecimientoDto.getPeso() == null || controlCrecimientoDto.getPeso().intValue() <= 0;
+
+    }
+
+    public boolean notIdPersona(ControlCrecimientoDto controlCrecimientoDto) {
+        return controlCrecimientoDto.getIdPersona() <= 0;
+
+    }
+
 }

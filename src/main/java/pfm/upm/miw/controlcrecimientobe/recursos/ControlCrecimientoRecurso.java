@@ -2,9 +2,7 @@ package pfm.upm.miw.controlcrecimientobe.recursos;
 
 import java.util.List;
 import java.util.Optional;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pfm.upm.miw.controlcrecimientobe.cotroladores.ControlCrecimientoController;
 import pfm.upm.miw.controlcrecimientobe.dtos.ControlCrecimientoDto;
 import pfm.upm.miw.controlcrecimientobe.entidades.ControlCrecimiento;
+import pfm.upm.miw.controlcrecimientobe.recursos.exepciones.NotFieldDataControlCrecimientoException;
+
 
 
 
@@ -28,11 +28,24 @@ public class ControlCrecimientoRecurso {
     private ControlCrecimientoController controlCrecimientoController;
 
     @PostMapping
-    public void crearControlCrecimiento(@Valid  @RequestBody ControlCrecimientoDto controlCrecimientoDto) {
+    public void crearControlCrecimiento(@Valid  @RequestBody ControlCrecimientoDto controlCrecimientoDto) throws NotFieldDataControlCrecimientoException {
       
+
+        if (this.controlCrecimientoController.notIdPersona(controlCrecimientoDto)) {
+            throw new NotFieldDataControlCrecimientoException("Falta Id de la persona");
+        }  
+
+        if (this.controlCrecimientoController.notTalla(controlCrecimientoDto)) {
+            throw new NotFieldDataControlCrecimientoException("Falta la talla");
+        }  
+        
+        if (this.controlCrecimientoController.notPeso(controlCrecimientoDto)) {
+            throw new NotFieldDataControlCrecimientoException("Falta el peso");
+        }  
+         
         Optional<String> error = this.controlCrecimientoController.crearControlCrecimiento(controlCrecimientoDto);
         if (error.isPresent()) {
-            System.out.println("Errrorrrr>>>>>>>>>>>>");
+            throw new NotFieldDataControlCrecimientoException(error.get());
         }
         
     }
@@ -43,5 +56,5 @@ public class ControlCrecimientoRecurso {
     }
 
 
-
+    
 }
