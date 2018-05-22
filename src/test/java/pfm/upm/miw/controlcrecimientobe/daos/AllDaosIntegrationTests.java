@@ -9,6 +9,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
     ControlCrecimientoTestIT.class,
     PersonaTestIT.class, 
+    PercentilOmsTestIT.class,
     PercentilOmsTestIT.class
 })
 
