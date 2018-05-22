@@ -5,5 +5,7 @@ import pfm.upm.miw.controlcrecimientobe.entidades.Persona;
 
 
 public interface IPersonaDao extends JpaRepository<Persona, Integer> {
+    
+    public Persona findByNombre(String nombre);
 
 }

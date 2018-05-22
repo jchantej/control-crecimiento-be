@@ -86,7 +86,14 @@
 			<artifactId>httpclient</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<!-- ================ Manejo de Fechas================== -->
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
 	</dependencies>
+
+
 
 
 	<!-- ================ TEST extensions================== -->

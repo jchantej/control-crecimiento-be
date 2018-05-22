@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
+import pfm.upm.miw.controlcrecimientobe.daos.IControlCrecimientoDao;
+import pfm.upm.miw.controlcrecimientobe.daos.IPercentilCrecimientoDao;
+import pfm.upm.miw.controlcrecimientobe.daos.IPercentilOmsDao;
 import pfm.upm.miw.controlcrecimientobe.daos.IPersonaDao;
 import pfm.upm.miw.controlcrecimientobe.daos.IUsuarioDao;
 import pfm.upm.miw.controlcrecimientobe.entidades.Usuario;
@@ -36,6 +39,15 @@ public class DatabaseSeederService {
     @Autowired
     private IPersonaDao iPersonaDao;
 
+    @Autowired
+    private IControlCrecimientoDao iControlCrecimientoDao;
+
+    @Autowired
+    private IPercentilOmsDao iPercentilOmsDao;
+
+    @Autowired
+    private IPercentilCrecimientoDao iPercentilCrecimientoDao;
+
     @PostConstruct
     public void seedDatabase() {
         if (ymlFileName.isPresent()) {
@@ -43,7 +55,7 @@ public class DatabaseSeederService {
             try {
                 this.seedDatabase(ymlFileName.get());
             } catch (IOException e) {
-  
+
                 LogManager.getLogger(this.getClass()).error("File " + ymlFileName + " doesn't exist or can't be opened");
             }
         } else {
@@ -64,7 +76,10 @@ public class DatabaseSeederService {
         if (tpvGraph.getPersonaList() != null) {
             this.iPersonaDao.saveAll(tpvGraph.getPersonaList());
         }
-      
+        if (tpvGraph.getPersonaList() != null) {
+            this.iPercentilOmsDao.saveAll(tpvGraph.getPercentilOmsList());
+        }
+
         // -----------------------------------------------------------------------
 
         LogManager.getLogger(this.getClass()).warn("------------------------- Seed: " + ymlFileName + "-----------");
@@ -74,6 +89,9 @@ public class DatabaseSeederService {
         LogManager.getLogger(this.getClass()).warn("------------------------- delete All And Create Admin-----------");
         // Delete Repositories -----------------------------------------------------
         this.iUsuarioDao.deleteAll();
+        this.iPercentilCrecimientoDao.deleteAll();
+        this.iPercentilOmsDao.deleteAll();
+        this.iControlCrecimientoDao.deleteAll();
         this.iPersonaDao.deleteAll();
 
         this.createAdminIfNotExist();
@@ -82,8 +100,8 @@ public class DatabaseSeederService {
 
     public void createAdminIfNotExist() {
         if (this.iUsuarioDao.findByUsername(this.username) == null) {
-            Usuario usuario = new Usuario(this.username, this.password, "","","","");
-           //TODO: falta agregar el rol
+            Usuario usuario = new Usuario(this.username, this.password, "", "", "", "");
+            // TODO: falta agregar el rol
             this.iUsuarioDao.save(usuario);
         }
     }
