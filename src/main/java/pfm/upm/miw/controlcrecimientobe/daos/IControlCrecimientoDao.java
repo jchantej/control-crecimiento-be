@@ -12,3 +12,6 @@ public interface IControlCrecimientoDao extends JpaRepository<ControlCrecimiento
     public List<ControlCrecimiento> findByPersonaId(int idPersona);
 
 }
+
+
+

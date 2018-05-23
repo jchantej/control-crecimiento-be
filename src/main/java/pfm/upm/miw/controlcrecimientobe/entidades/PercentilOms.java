@@ -19,7 +19,7 @@ public class PercentilOms implements Serializable {
 
     private String genero;
 
-    private String tipoPercenetil;
+    private String tipo;
 
     private BigDecimal indicadorSimetria;
 
@@ -45,13 +45,13 @@ public class PercentilOms implements Serializable {
     
     
 
-    public PercentilOms(int edad, String genero, String tipoPercenetil, BigDecimal indicadorSimetria, BigDecimal mediana,
+    public PercentilOms(int edad, String genero, String tipo, BigDecimal indicadorSimetria, BigDecimal mediana,
             BigDecimal coeficienteVariacion, BigDecimal percentil3, BigDecimal percentil15, BigDecimal percentil50, BigDecimal percentil85,
             BigDecimal percentil97) {
         this();
         this.edad = edad;
         this.genero = genero;
-        this.tipoPercenetil = tipoPercenetil;
+        this.tipo = tipo;
         this.indicadorSimetria = indicadorSimetria;
         this.mediana = mediana;
         this.coeficienteVariacion = coeficienteVariacion;
@@ -80,12 +80,12 @@ public class PercentilOms implements Serializable {
         this.genero = genero;
     }
 
-    public String getTipoPercenetil() {
-        return tipoPercenetil;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTipoPercenetil(String tipoPercenetil) {
-        this.tipoPercenetil = tipoPercenetil;
+    public void setTipoPercenetil(String tipo) {
+        this.tipo = tipo;
     }
 
     public BigDecimal getIndicadorSimetria() {
@@ -166,7 +166,7 @@ public class PercentilOms implements Serializable {
 
     @Override
     public String toString() {
-        return "PercentilOms [id=" + id + ", edad=" + edad + ", genero=" + genero + ", tipoPercenetil=" + tipoPercenetil
+        return "PercentilOms [id=" + id + ", edad=" + edad + ", genero=" + genero + ", tipoPercenetil=" + tipo
                 + ", indicadorSimetria=" + indicadorSimetria + ", mediana=" + mediana + ", coeficienteVariacion=" + coeficienteVariacion
                 + ", percentil3=" + percentil3 + ", percentil15=" + percentil15 + ", percentil50=" + percentil50 + ", percentil85="
                 + percentil85 + ", percentil97=" + percentil97 + ", fechaRegistro=" + fechaRegistro + "]";
