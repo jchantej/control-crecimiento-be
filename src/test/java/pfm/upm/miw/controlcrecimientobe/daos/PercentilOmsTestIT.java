@@ -29,7 +29,20 @@ public class PercentilOmsTestIT {
         assertNotNull(percentileOmss);
         assertEquals(true, percentileOmss.size() >= 1);
         assertEquals(0, percentileOmss.get(0).getEdad());
-       assertEquals("M", percentileOmss.get(0).getGenero());
+        assertEquals("M", percentileOmss.get(0).getGenero());
+        System.out.println(percentileOmss.toString());
+
+    }
+
+    @Test
+    public void testFindByTipoAndGenero() {
+
+        percentileOmss = iPercentilOmsDao.findByGeneroAndTipo("M", "P");
+
+        assertNotNull(percentileOmss);
+        assertEquals(true, percentileOmss.size() >= 1);
+        assertEquals("P", percentileOmss.get(0).getTipo());
+        assertEquals("M", percentileOmss.get(0).getGenero());
 
     }
 
