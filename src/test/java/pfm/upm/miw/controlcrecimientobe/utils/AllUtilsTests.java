@@ -4,11 +4,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import pfm.upm.miw.controlcrecimientobe.utils.CalculoEdadTest;
+import pfm.upm.miw.controlcrecimientobe.servicios.CalculoEdadServicioTest;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-    CalculoEdadTest.class,    
+    CalculoEdadServicioTest.class,    
 })
 
 public class AllUtilsTests {

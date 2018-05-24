@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,8 @@ import pfm.upm.miw.controlcrecimientobe.recursos.exepciones.NotFieldDataControlC
 public class ControlCrecimientoRecurso {
 
     public static final String CONTROLES = "/controles";
+    public static final String PERSONA = "/persona";
+    public static final String ID = "/{id}";
 
 
     @Autowired
@@ -50,9 +53,10 @@ public class ControlCrecimientoRecurso {
         
     }
     
-    @GetMapping
-    public List<ControlCrecimiento> getControlesCrecimiento(int idPersona){
-      return  this.controlCrecimientoController.getControlesCrecimiento(idPersona);
+    @GetMapping(value = PERSONA + ID)
+    public List<ControlCrecimientoDto> getControlesCrecimiento(@PathVariable int id){
+ 
+      return  this.controlCrecimientoController.getControlesCrecimiento(id);
     }
 
 

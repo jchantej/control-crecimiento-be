@@ -12,6 +12,8 @@ public class ControlCrecimientoDto {
     private BigDecimal peso;
 
     private BigDecimal talla;
+    
+    private String edadPeriodo;
 
     private Date fechaRegistro;
 
@@ -57,6 +59,16 @@ public class ControlCrecimientoDto {
 
     public void setTalla(BigDecimal talla) {
         this.talla = talla;
+    }
+    
+    
+
+    public String getEdadPeriodo() {
+        return edadPeriodo;
+    }
+
+    public void setEdadPeriodo(String edadPeriodo) {
+        this.edadPeriodo = edadPeriodo;
     }
 
     public Date getFechaRegistro() {
