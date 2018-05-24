@@ -83,7 +83,7 @@ public class ControlCrecimientoController {
             cc.setEdad(item.getEdad());
             cc.setEdadPeriodo(Integer.toString(calculoEdad.getEdadPeriodoAnios()) + " años, "
                     + Integer.toString(calculoEdad.getEdadPeriodoMeses()) + " meses");
-            cc.setFechaRegistro(cc.getFechaRegistro());
+            cc.setFechaRegistro(item.getFechaRegistro());
             cc.setId(item.getId());
             cc.setPeso(item.getPeso());
             cc.setTalla(item.getTalla());
