@@ -15,7 +15,7 @@ import pfm.upm.miw.controlcrecimientobe.entidades.ControlCrecimiento;
 import pfm.upm.miw.controlcrecimientobe.entidades.PercentilCrecimiento;
 import pfm.upm.miw.controlcrecimientobe.entidades.PercentilOms;
 import pfm.upm.miw.controlcrecimientobe.entidades.Persona;
-import pfm.upm.miw.controlcrecimientobe.utils.CalculoEdad;
+import pfm.upm.miw.controlcrecimientobe.servicios.CalculoEdadServicio;
 
 @Transactional
 @Controller
@@ -46,7 +46,7 @@ public class ControlCrecimientoController {
         percentilesCrecimiento = new ArrayList<>();
         Optional<Persona> persona = this.iPersonaDao.findById(controlCrecimientoDto.getIdPersona());
         if (persona.isPresent()) {
-            edadTotalDias = new CalculoEdad(persona.get().getFechaNacimiento()).getEdadTotalDias();
+            edadTotalDias = new CalculoEdadServicio(persona.get().getFechaNacimiento()).getEdadTotalDias();
             this.controlCrecimiento = new ControlCrecimiento(edadTotalDias, controlCrecimientoDto.getPeso(),
                     controlCrecimientoDto.getTalla(), persona.get());
 
@@ -71,8 +71,26 @@ public class ControlCrecimientoController {
         return Optional.empty();
     }
 
-    public List<ControlCrecimiento> getControlesCrecimiento(int idPersona) {
-        return this.iControlCrecimientoDao.findByPersonaId(idPersona);
+    public List<ControlCrecimientoDto> getControlesCrecimiento(int idPersona) {
+
+        List<ControlCrecimiento> controlesCrecimiento;
+        List<ControlCrecimientoDto> controlesCrecimientoDto = new ArrayList<>();
+        controlesCrecimiento = this.iControlCrecimientoDao.findByPersonaId(idPersona);
+
+        for (ControlCrecimiento item : controlesCrecimiento) {
+            CalculoEdadServicio calculoEdad = new CalculoEdadServicio(item.getPersona().getFechaNacimiento());
+            ControlCrecimientoDto cc = new ControlCrecimientoDto();
+            cc.setEdad(item.getEdad());
+            cc.setEdadPeriodo(Integer.toString(calculoEdad.getEdadPeriodoAnios()) + " años, "
+                    + Integer.toString(calculoEdad.getEdadPeriodoMeses()) + " meses");
+            cc.setFechaRegistro(item.getFechaRegistro());
+            cc.setId(item.getId());
+            cc.setPeso(item.getPeso());
+            cc.setTalla(item.getTalla());
+            controlesCrecimientoDto.add(cc);
+        }
+
+        return controlesCrecimientoDto;
     }
 
     public boolean notTalla(ControlCrecimientoDto controlCrecimientoDto) {

@@ -1,4 +1,4 @@
-package pfm.upm.miw.controlcrecimientobe.utils;
+package pfm.upm.miw.controlcrecimientobe.servicios;
 
 import java.util.Date;
 
@@ -10,11 +10,11 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
-public class CalculoEdad {
+public class CalculoEdadServicio {
 
     private Date fechaNacimiento;
 
-    public CalculoEdad(Date fechaNacimiento) {
+    public CalculoEdadServicio(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

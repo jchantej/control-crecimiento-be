@@ -7,7 +7,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-    DatabaseSeederServiceIT.class,    
+    DatabaseSeederServiceIT.class,  
+    CalculoEdadServicioTest.class
 })
 
 public class AllServiciosIntegrationTests {

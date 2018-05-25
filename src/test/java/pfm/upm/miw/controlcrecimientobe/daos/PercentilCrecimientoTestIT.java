@@ -18,7 +18,7 @@ import pfm.upm.miw.controlcrecimientobe.entidades.ControlCrecimiento;
 import pfm.upm.miw.controlcrecimientobe.entidades.PercentilCrecimiento;
 import pfm.upm.miw.controlcrecimientobe.entidades.PercentilOms;
 import pfm.upm.miw.controlcrecimientobe.entidades.Persona;
-import pfm.upm.miw.controlcrecimientobe.utils.CalculoEdad;
+import pfm.upm.miw.controlcrecimientobe.servicios.CalculoEdadServicio;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -54,7 +54,7 @@ public class PercentilCrecimientoTestIT {
         this.persona = iPersonaDao.findByNombre("test1");
         this.persona.setFechaNacimiento(new Date());
 
-        edadTotalDias = new CalculoEdad(this.persona.getFechaNacimiento()).getEdadTotalDias();
+        edadTotalDias = new CalculoEdadServicio(this.persona.getFechaNacimiento()).getEdadTotalDias();
 
     }
 
