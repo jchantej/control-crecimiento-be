@@ -20,6 +20,10 @@ public class PersonaDto {
 
     private Date fechaRegistro;
 
+    private int edadDias;
+
+    private String edadPeriodo;
+
     private Boolean activo;
 
     private int idUsuario;
@@ -104,16 +108,39 @@ public class PersonaDto {
         this.idUsuario = idUsuario;
     }
 
-    public Boolean getActive() {
+
+    public int getId() {
+        return id;
+    }
+    
+    
+
+    public int getEdadDias() {
+        return edadDias;
+    }
+
+    public void setEdadDias(int edadDias) {
+        this.edadDias = edadDias;
+    }
+
+    public String getEdadPeriodo() {
+        return edadPeriodo;
+    }
+
+    public void setEdadPeriodo(String edadPeriodo) {
+        this.edadPeriodo = edadPeriodo;
+    }
+
+    public Boolean getActivo() {
         return activo;
     }
 
-    public void setActive(Boolean active) {
-        this.activo = active;
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 
-    public int getId() {
-        return id; 
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

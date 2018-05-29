@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,8 @@ import pfm.upm.miw.controlcrecimientobe.recursos.exepciones.NotFieldDataPersonaE
 public class PersonaRecurso {
 
     public static final String PERSONAS = "/personas";
+    public static final String USUARIO = "/usuario";
+    public static final String ID = "/{id}";
 
 
     @Autowired
@@ -66,6 +69,13 @@ public class PersonaRecurso {
     @GetMapping
     public List<Persona> getPersonas(){
       return  this.personaController.getPersonas();
+    }
+
+
+    @GetMapping(value = USUARIO + ID)
+    public List<PersonaDto> getControlesCrecimiento(@PathVariable int id){
+ 
+      return  this.personaController.getPersonasIdUsuario(id);
     }
 
 
