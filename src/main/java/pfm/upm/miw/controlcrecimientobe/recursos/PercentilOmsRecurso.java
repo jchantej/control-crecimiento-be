@@ -10,33 +10,25 @@ import org.springframework.web.bind.annotation.RestController;
 import pfm.upm.miw.controlcrecimientobe.cotroladores.PercentilOmsController;
 import pfm.upm.miw.controlcrecimientobe.entidades.PercentilOms;
 
-
-
-
 @RestController
 @RequestMapping(PercentilOmsRecurso.PERCENTILES)
 public class PercentilOmsRecurso {
 
     public static final String PERCENTILES = "/percentiles";
-    public static final String GENEROTIPO = "/generotipo";
 
+    public static final String GENEROTIPO = "/generotipo";
 
     @Autowired
     private PercentilOmsController percentilOmsController;
-    
-   
-    
+
     @GetMapping(value = GENEROTIPO)
-    public List<PercentilOms> getPercentiles(@RequestParam String genero, @RequestParam String tipo){
-      return  this.percentilOmsController.getPercentiles(genero, tipo);
+    public List<PercentilOms> getPercentiles(@RequestParam String genero, @RequestParam String tipo, @RequestParam int edad) {
+        return this.percentilOmsController.getPercentiles(genero, tipo, edad);
     }
-    
-    
 
     @GetMapping
-    public List<PercentilOms> getAllPercentiles(){
-      return  this.percentilOmsController.getAllPercentiles();
+    public List<PercentilOms> getAllPercentiles() {
+        return this.percentilOmsController.getAllPercentiles();
     }
-    
 
 }
