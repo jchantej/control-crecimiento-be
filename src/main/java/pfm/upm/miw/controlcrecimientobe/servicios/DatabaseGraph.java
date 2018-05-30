@@ -15,8 +15,7 @@ public class DatabaseGraph {
     
     private List<PercentilOms> percentilOmsList;
     
-    private List<Rol> rolList;
-    
+   
     public DatabaseGraph() {
         // Empty for framework
     }
@@ -45,17 +44,6 @@ public class DatabaseGraph {
         this.percentilOmsList = percentilOmsList;
     }
 
-    public List<Rol> getRolList() {
-        return rolList;
-    }
-
-    public void setRolList(List<Rol> rolList) {
-        this.rolList = rolList;
-    }
-    
-    
-    
-    
-    
+   
 
 }

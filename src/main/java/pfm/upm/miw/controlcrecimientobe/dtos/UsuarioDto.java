@@ -30,18 +30,14 @@ public class UsuarioDto{
         //Empty for framework
     }
 
-    public UsuarioDto(int id, String username, String password, String nombre, String apellido, String correo, String foto, Boolean activo,
-            Date fechaRegistro) {
-        super();
-        this.id = id;
+    public UsuarioDto(String username, String password, String nombre, String apellido, String correo, String foto) {
         this.username = username;
         this.password = password;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.foto = foto;
-        this.activo = activo;
-        this.fechaRegistro = fechaRegistro;
+
     }
 
     public int getId() {

@@ -34,9 +34,3 @@ personaList:
     grupoSanguineo: ORH+
     foto: test2.jpg
     idUsuario: 1
-
-# Personas
-rolList:
-  - &ro1
-    codigo: COSTUMER
-    nombre: ROL CLIENTE

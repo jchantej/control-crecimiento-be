@@ -39,6 +39,12 @@ public class DatabaseSeederService {
     
     @Value("${cc.admin.nombre.rol}")
     private String nombreRol;
+    
+    @Value("${cc.costumer.codigo.rol}")
+    private String codigoCostumerRol;
+    
+    @Value("${cc.costumer.nombre.rol}")
+    private String nombreCostumerRol;
 
     @Value("${cc.databaseSeeder.ymlFileName:#{null}}")
     private Optional<String> ymlFileName;
@@ -68,6 +74,7 @@ public class DatabaseSeederService {
     public void seedDatabase() {
         if (ymlFileName.isPresent()) {
             this.deleteAllAndCreateAdmin();
+            this.createRolCostumerIfNotExist();
             try {
                 this.seedDatabase(ymlFileName.get());
             } catch (IOException e) {
@@ -76,6 +83,7 @@ public class DatabaseSeederService {
             }
         } else {
             this.createAdminIfNotExist();
+            this.createRolCostumerIfNotExist();
         }
     }
 
@@ -96,9 +104,9 @@ public class DatabaseSeederService {
             this.iPercentilOmsDao.saveAll(tpvGraph.getPercentilOmsList());
         }
         
-        if (tpvGraph.getRolList() != null) {
+      /*  if (tpvGraph.getRolList() != null) {
             this.iRolDao.saveAll(tpvGraph.getRolList());
-        }
+        }*/
 
         // -----------------------------------------------------------------------
 
@@ -108,6 +116,7 @@ public class DatabaseSeederService {
     public void deleteAllAndCreateAdmin() {
         LogManager.getLogger(this.getClass()).warn("------------------------- delete All And Create Admin-----------");
         // Delete Repositories -----------------------------------------------------
+        this.iUsuarioRolDao.deleteAll();
         this.iUsuarioDao.deleteAll();
         this.iPercentilCrecimientoDao.deleteAll();
         this.iPercentilOmsDao.deleteAll();
@@ -115,10 +124,12 @@ public class DatabaseSeederService {
         this.iPersonaDao.deleteAll();
 
         this.createAdminIfNotExist();
+        this.createRolCostumerIfNotExist();
         // -----------------------------------------------------------------------
     }
 
     public void createAdminIfNotExist() {
+        LogManager.getLogger(this.getClass()).info("------------------------- llega a admin rol Admin-----------");
         if (this.iUsuarioDao.findByUsername(this.username) == null) {
             Usuario usuario = new Usuario(this.username, this.password, "", "", "", "");
             Rol rol = new Rol(this.codigoRol, this.nombreRol);
@@ -128,6 +139,15 @@ public class DatabaseSeederService {
             usuarioRol.setRol(rol);
             usuarioRol.setUsuario(usuario);
             this.iUsuarioRolDao.save(usuarioRol);
+        }
+        
+    }
+    
+    public void createRolCostumerIfNotExist() {
+        LogManager.getLogger(this.getClass()).info("------------------------- Entra a crear el rol Costumer-----------");
+        if (this.iRolDao.findByCodigo(this.codigoCostumerRol) == null) {
+            Rol rol = new Rol(this.codigoCostumerRol, this.nombreCostumerRol);
+            this.iRolDao.save(rol);
         }
     }
 
