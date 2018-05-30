@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import pfm.upm.miw.controlcrecimientobe.cotroladores.UsuarioController;
 import pfm.upm.miw.controlcrecimientobe.dtos.UsuarioDto;
+import pfm.upm.miw.controlcrecimientobe.dtos.UsuarioRolDto;
 import pfm.upm.miw.controlcrecimientobe.entidades.Usuario;
 import pfm.upm.miw.controlcrecimientobe.recursos.exepciones.UsuarioExistenteException;
 
@@ -20,6 +21,9 @@ public class UsuarioRecurso {
     public static final String USUARIOS = "/usuarios";
 
     public static final String USERNAME = "/{username}";
+
+    public static final String USUARIOROL = "/usuariorol";
+
 
     @Autowired
     private UsuarioController usuarioController;
@@ -38,6 +42,13 @@ public class UsuarioRecurso {
     public Usuario getUsuario(@PathVariable String username) {
 
         return this.usuarioController.getUsuario(username);
+
+    }
+
+    @GetMapping(value = USUARIOROL + USERNAME)
+    public UsuarioRolDto getUsuarioRol(@PathVariable String username) {
+
+        return this.usuarioController.getUsuarioRol(username);
 
     }
 

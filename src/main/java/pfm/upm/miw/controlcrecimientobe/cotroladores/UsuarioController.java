@@ -8,6 +8,7 @@ import pfm.upm.miw.controlcrecimientobe.daos.IRolDao;
 import pfm.upm.miw.controlcrecimientobe.daos.IUsuarioDao;
 import pfm.upm.miw.controlcrecimientobe.daos.IUsuarioRolDao;
 import pfm.upm.miw.controlcrecimientobe.dtos.UsuarioDto;
+import pfm.upm.miw.controlcrecimientobe.dtos.UsuarioRolDto;
 import pfm.upm.miw.controlcrecimientobe.entidades.Rol;
 import pfm.upm.miw.controlcrecimientobe.entidades.Usuario;
 import pfm.upm.miw.controlcrecimientobe.entidades.UsuarioRol;
@@ -46,6 +47,26 @@ public class UsuarioController {
 
     public Usuario getUsuario(String username) {
         return usuarioDao.findByUsername(username);
+    }
+
+    public UsuarioRolDto getUsuarioRol(String username) {
+
+        UsuarioRol usuarioRol = usuarioRolDao.findByUsuario(usuarioDao.findByUsername(username));
+        UsuarioRolDto usuarioRolDto = new UsuarioRolDto();
+        usuarioRolDto.setUsername(usuarioRol.getUsuario().getUsername());
+        usuarioRolDto.setPassword(usuarioRol.getUsuario().getPassword());
+        usuarioRolDto.setActivo(usuarioRol.getUsuario().getActivo());
+        usuarioRolDto.setApellido(usuarioRol.getUsuario().getApellido());
+        usuarioRolDto.setNombre(usuarioRol.getUsuario().getNombre());
+        usuarioRolDto.setFoto(usuarioRol.getUsuario().getFoto());
+        usuarioRolDto.setCorreo(usuarioRol.getUsuario().getCorreo());
+        usuarioRolDto.setId(usuarioRol.getUsuario().getId());
+        usuarioRolDto.setIdRol(usuarioRol.getRol().getId());
+        usuarioRolDto.setCodigoRol(usuarioRol.getRol().getCodigo());
+        usuarioRolDto.setNombreRol(usuarioRol.getRol().getNombre());
+
+        return usuarioRolDto;
+
     }
 
 }
