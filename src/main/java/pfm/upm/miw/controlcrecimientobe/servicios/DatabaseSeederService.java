@@ -18,8 +18,12 @@ import pfm.upm.miw.controlcrecimientobe.daos.IControlCrecimientoDao;
 import pfm.upm.miw.controlcrecimientobe.daos.IPercentilCrecimientoDao;
 import pfm.upm.miw.controlcrecimientobe.daos.IPercentilOmsDao;
 import pfm.upm.miw.controlcrecimientobe.daos.IPersonaDao;
+import pfm.upm.miw.controlcrecimientobe.daos.IRolDao;
 import pfm.upm.miw.controlcrecimientobe.daos.IUsuarioDao;
+import pfm.upm.miw.controlcrecimientobe.daos.IUsuarioRolDao;
+import pfm.upm.miw.controlcrecimientobe.entidades.Rol;
 import pfm.upm.miw.controlcrecimientobe.entidades.Usuario;
+import pfm.upm.miw.controlcrecimientobe.entidades.UsuarioRol;
 
 @Service
 public class DatabaseSeederService {
@@ -29,6 +33,12 @@ public class DatabaseSeederService {
 
     @Value("${cc.admin.password}")
     private String password;
+    
+    @Value("${cc.admin.codigo.rol}")
+    private String codigoRol;
+    
+    @Value("${cc.admin.nombre.rol}")
+    private String nombreRol;
 
     @Value("${cc.databaseSeeder.ymlFileName:#{null}}")
     private Optional<String> ymlFileName;
@@ -47,6 +57,12 @@ public class DatabaseSeederService {
 
     @Autowired
     private IPercentilCrecimientoDao iPercentilCrecimientoDao;
+    
+    @Autowired
+    private IRolDao iRolDao;
+    
+    @Autowired
+    private IUsuarioRolDao iUsuarioRolDao;
 
     @PostConstruct
     public void seedDatabase() {
@@ -79,6 +95,10 @@ public class DatabaseSeederService {
         if (tpvGraph.getPersonaList() != null) {
             this.iPercentilOmsDao.saveAll(tpvGraph.getPercentilOmsList());
         }
+        
+        if (tpvGraph.getRolList() != null) {
+            this.iRolDao.saveAll(tpvGraph.getRolList());
+        }
 
         // -----------------------------------------------------------------------
 
@@ -101,8 +121,13 @@ public class DatabaseSeederService {
     public void createAdminIfNotExist() {
         if (this.iUsuarioDao.findByUsername(this.username) == null) {
             Usuario usuario = new Usuario(this.username, this.password, "", "", "", "");
-            // TODO: falta agregar el rol
+            Rol rol = new Rol(this.codigoRol, this.nombreRol);
+            UsuarioRol usuarioRol = new UsuarioRol();
+            this.iRolDao.save(rol);
             this.iUsuarioDao.save(usuario);
+            usuarioRol.setRol(rol);
+            usuarioRol.setUsuario(usuario);
+            this.iUsuarioRolDao.save(usuarioRol);
         }
     }
 
