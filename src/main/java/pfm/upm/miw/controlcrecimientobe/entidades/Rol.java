@@ -17,11 +17,19 @@ public class Rol implements Serializable {
 
     private String nombre;
 
-    private Boolean estado;
+    private Boolean activo;
 
-    private Date fecharegistro;
+    private Date fechaRegistro;
 
     public Rol() {
+        this.fechaRegistro = new Date();
+        this.activo = true;
+    }
+
+    public Rol(String codigo, String nombre) {
+        this();
+        this.codigo = codigo;
+        this.nombre = nombre;
     }
 
     public String getCodigo() {
@@ -40,20 +48,20 @@ public class Rol implements Serializable {
         this.nombre = nombre;
     }
 
-    public Boolean getEstado() {
-        return estado;
+    public Boolean getActivo() {
+        return activo;
     }
 
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 
-    public Date getFecharegistro() {
-        return fecharegistro;
+    public Date getFechaRegistro() {
+        return fechaRegistro;
     }
 
-    public void setFecharegistro(Date fecharegistro) {
-        this.fecharegistro = fecharegistro;
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 
     public int getId() {
@@ -62,8 +70,30 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return "Rol [id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", estado=" + estado + ", fecharegistro=" + fecharegistro
+        return "Rol [id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", activo=" + activo + ", fechaRegistro=" + fechaRegistro
                 + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + id;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Rol other = (Rol) obj;
+        if (id != other.id)
+            return false;
+        return true;
     }
 
 }

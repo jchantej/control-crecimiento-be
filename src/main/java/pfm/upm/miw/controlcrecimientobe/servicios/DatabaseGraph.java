@@ -4,6 +4,7 @@ import java.util.List;
 
 import pfm.upm.miw.controlcrecimientobe.entidades.PercentilOms;
 import pfm.upm.miw.controlcrecimientobe.entidades.Persona;
+import pfm.upm.miw.controlcrecimientobe.entidades.Rol;
 import pfm.upm.miw.controlcrecimientobe.entidades.Usuario;
 
 public class DatabaseGraph {
@@ -14,6 +15,7 @@ public class DatabaseGraph {
     
     private List<PercentilOms> percentilOmsList;
     
+   
     public DatabaseGraph() {
         // Empty for framework
     }
@@ -41,9 +43,7 @@ public class DatabaseGraph {
     public void setPercentilOmsList(List<PercentilOms> percentilOmsList) {
         this.percentilOmsList = percentilOmsList;
     }
-    
-    
-    
-    
+
+   
 
 }
