@@ -113,11 +113,11 @@ public class Persona implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Boolean getActive() {
+    public Boolean getActivo() {
         return activo;
     }
 
-    public void setActive(Boolean active) {
+    public void setActivo(Boolean active) {
         this.activo = active;
     }
 

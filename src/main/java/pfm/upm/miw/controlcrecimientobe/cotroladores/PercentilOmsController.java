@@ -14,11 +14,11 @@ public class PercentilOmsController {
     @Autowired
     private IPercentilOmsDao iPercentilOmsDao;
 
-    public List<PercentilOms> getPercentiles(String genero, String tipo) {
+    public List<PercentilOms> getPercentiles(String genero, String tipo, int edad) {
 
-        return iPercentilOmsDao.findByGeneroAndTipo(genero, tipo);
+        return iPercentilOmsDao.findByGeneroAndTipoAndEdadBetweenCeroAndEdad(genero, tipo, edad + 100);
     }
-    
+
     public List<PercentilOms> getAllPercentiles() {
 
         return iPercentilOmsDao.findAll();

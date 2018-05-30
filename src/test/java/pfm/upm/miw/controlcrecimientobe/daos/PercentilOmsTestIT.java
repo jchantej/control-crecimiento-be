@@ -37,7 +37,7 @@ public class PercentilOmsTestIT {
     @Test
     public void testFindByTipoAndGenero() {
 
-        percentileOmss = iPercentilOmsDao.findByGeneroAndTipo("M", "P");
+        percentileOmss = iPercentilOmsDao.findByGeneroAndTipoAndEdadBetweenCeroAndEdad("M", "P", 50);
 
         assertNotNull(percentileOmss);
         assertEquals(true, percentileOmss.size() >= 1);

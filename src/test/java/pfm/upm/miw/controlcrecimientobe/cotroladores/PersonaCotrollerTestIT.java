@@ -49,7 +49,7 @@ public class PersonaCotrollerTestIT {
         personaDto = new PersonaDto();
         personaDto.setNombre("test");
         personaDto.setIdUsuario(1);
-        personaDto.setActive(true);
+        personaDto.setActivo(true);
         personaDto.setApellido("test");
         personaDto.setFechaNacimiento(new Date());
         personaDto.setGenero("test");
