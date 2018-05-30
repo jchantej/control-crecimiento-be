@@ -37,12 +37,15 @@ public class UsuarioController {
         usuarioDao.save(usuario);
         usuarioRolDao.save(usuarioRol);
 
-    
     }
 
     public boolean usuarioExistente(String username) {
         Usuario usuario = usuarioDao.findByUsername(username);
         return usuario != null;
+    }
+
+    public Usuario getUsuario(String username) {
+        return usuarioDao.findByUsername(username);
     }
 
 }
