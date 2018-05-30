@@ -39,6 +39,17 @@ public class UsuarioDto{
         this.foto = foto;
 
     }
+    
+    public UsuarioDto(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.nombre = "";
+        this.apellido = "";
+        this.correo = "";
+        this.foto = "";
+
+    }
+
 
     public int getId() {
         return id;

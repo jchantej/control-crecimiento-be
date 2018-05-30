@@ -1,7 +1,5 @@
 package pfm.upm.miw.controlcrecimientobe.cotroladores;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,9 +44,9 @@ public class UsuarioController {
 
         } else {
 
-            // TODO: Aqui expetion controlada
+            // TODO: Aqui exception controlada para cuando el usuario ya exista
         }
-
     }
+    
 
 }

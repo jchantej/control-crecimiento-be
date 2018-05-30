@@ -7,7 +7,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-    PersonaCotrollerTestIT.class,    
+    PersonaCotrollerTestIT.class,   
+    UsuarioCotrollerTestIT.class
 })
 
 public class AllCotrollersIntegrationTests {
