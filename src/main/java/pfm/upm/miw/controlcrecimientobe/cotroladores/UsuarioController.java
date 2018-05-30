@@ -1,6 +1,5 @@
 package pfm.upm.miw.controlcrecimientobe.cotroladores;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,29 +23,26 @@ public class UsuarioController {
 
     @Autowired
     private IUsuarioRolDao usuarioRolDao;
-    
+
     @Transactional
     public void crearUsuario(UsuarioDto usuarioDto) {
 
-        Usuario usuario = usuarioDao.findByUsername(usuarioDto.getUsername());
         Rol rol = rolDao.findByCodigo("COSTUMER");
+        Usuario usuario = new Usuario(usuarioDto.getUsername(), usuarioDto.getPassword(), usuarioDto.getNombre(), usuarioDto.getApellido(),
+                usuarioDto.getCorreo(), usuarioDto.getFoto());
 
-        if (usuario == null) {
+        UsuarioRol usuarioRol = new UsuarioRol();
+        usuarioRol.setRol(rol);
+        usuarioRol.setUsuario(usuario);
+        usuarioDao.save(usuario);
+        usuarioRolDao.save(usuarioRol);
 
-            usuario = new Usuario(usuarioDto.getUsername(), usuarioDto.getPassword(), usuarioDto.getNombre(), usuarioDto.getApellido(),
-                    usuarioDto.getCorreo(), usuarioDto.getFoto());
-
-            UsuarioRol usuarioRol = new UsuarioRol();
-            usuarioRol.setRol(rol);
-            usuarioRol.setUsuario(usuario);
-            usuarioDao.save(usuario);
-            usuarioRolDao.save(usuarioRol);
-
-        } else {
-
-            // TODO: Aqui exception controlada para cuando el usuario ya exista
-        }
-    }
     
+    }
+
+    public boolean usuarioExistente(String username) {
+        Usuario usuario = usuarioDao.findByUsername(username);
+        return usuario != null;
+    }
 
 }
