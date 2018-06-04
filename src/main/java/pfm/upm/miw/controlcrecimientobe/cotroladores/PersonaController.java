@@ -24,7 +24,7 @@ public class PersonaController {
         this.personaDao.save(persona);
     }
 
-    public Optional<String> actualizarPersona(int id , PersonaDto personaDto) {
+    public Optional<String> editarPersona(int id, PersonaDto personaDto) {
         Optional<Persona> personaDb = personaDao.findById(id);
         Persona persona = new Persona();
         if (personaDb.isPresent()) {
@@ -44,11 +44,26 @@ public class PersonaController {
         return Optional.of("OK");
     }
 
+    public Optional<String> eliminarPersona(int id) {
+        Optional<Persona> personaDb = personaDao.findById(id);
+        Persona persona = new Persona();
+        if (personaDb.isPresent()) {
+            persona = personaDb.get();
+            persona.setActivo(false);
+
+        } else {
+            return Optional.of("No data Found >>>Persona Id: " + personaDb.get().getId() + " " + personaDb.get().getNombre());
+        }
+
+        this.personaDao.save(persona);
+        return Optional.of("OK");
+    }
+
     public List<Persona> getPersonas() {
 
         return this.personaDao.findAll();
     }
-    
+
     public Optional<Persona> getPersona(int id) {
 
         return this.personaDao.findById(id);
