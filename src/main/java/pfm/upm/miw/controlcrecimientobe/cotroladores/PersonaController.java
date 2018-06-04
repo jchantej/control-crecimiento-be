@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import pfm.upm.miw.controlcrecimientobe.daos.IPersonaDao;
 import pfm.upm.miw.controlcrecimientobe.dtos.PersonaDto;
-import pfm.upm.miw.controlcrecimientobe.entidades.ControlCrecimiento;
 import pfm.upm.miw.controlcrecimientobe.entidades.Persona;
 import pfm.upm.miw.controlcrecimientobe.servicios.CalculoEdadServicio;
 
@@ -48,6 +47,11 @@ public class PersonaController {
     public List<Persona> getPersonas() {
 
         return this.personaDao.findAll();
+    }
+    
+    public Optional<Persona> getPersona(int id) {
+
+        return this.personaDao.findById(id);
     }
 
     public List<PersonaDto> getPersonasIdUsuario(int idUsuario) {

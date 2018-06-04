@@ -75,9 +75,15 @@ public class PersonaRecurso {
 
 
     @GetMapping(value = USUARIO + ID)
-    public List<PersonaDto> getControlesCrecimiento(@PathVariable int id){
+    public List<PersonaDto> getPersonasIdUsuario(@PathVariable int id){
  
       return  this.personaController.getPersonasIdUsuario(id);
+    }
+    
+    @GetMapping(value = ID)
+    public Optional<Persona> getPersona(@PathVariable int id){
+ 
+      return  this.personaController.getPersona(id);
     }
     
     @PutMapping(value =  ID)
