@@ -61,8 +61,8 @@ public class PersonaTestIT {
     @Test
     public void testFindByIdUsuario() {
         
-        assertNotNull(iPersonaDao.findByIdUsuario( this.usuario.getId()));
-        assertEquals("Pablo", iPersonaDao.findByIdUsuario(this.usuario.getId()).get(0).getNombre());
+        assertNotNull(iPersonaDao.findByIdUsuarioAndActivoTrue( this.usuario.getId()));
+        assertEquals("Pablo", iPersonaDao.findByIdUsuarioAndActivoTrue(this.usuario.getId()).get(0).getNombre());
     }
 
 

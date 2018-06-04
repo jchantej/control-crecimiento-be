@@ -72,7 +72,7 @@ public class PersonaController {
     public List<PersonaDto> getPersonasIdUsuario(int idUsuario) {
         List<Persona> personas;
         List<PersonaDto> personasDto = new ArrayList<>();
-        personas = this.personaDao.findByIdUsuario(idUsuario);
+        personas = this.personaDao.findByIdUsuarioAndActivoTrue(idUsuario);
 
         for (Persona item : personas) {
             CalculoEdadServicio calculoEdad = new CalculoEdadServicio(item.getFechaNacimiento());
