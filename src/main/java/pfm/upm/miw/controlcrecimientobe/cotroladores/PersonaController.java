@@ -2,6 +2,7 @@ package pfm.upm.miw.controlcrecimientobe.cotroladores;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,9 +24,34 @@ public class PersonaController {
         this.personaDao.save(persona);
     }
 
+    public Optional<String> actualizarPersona(int id , PersonaDto personaDto) {
+        Optional<Persona> personaDb = personaDao.findById(id);
+        Persona persona = new Persona();
+        if (personaDb.isPresent()) {
+            persona = personaDb.get();
+            persona.setNombre(personaDto.getNombre());
+            persona.setApellido(personaDto.getApellido());
+            persona.setFechaNacimiento(personaDto.getFechaNacimiento());
+            persona.setFoto(personaDto.getFoto());
+            persona.setGenero(personaDto.getGenero());
+            persona.setGrupoSanguineo(personaDto.getGrupoSanguineo());
+
+        } else {
+            return Optional.of("No data Found >>>Persona Id: " + personaDto.getId() + " " + personaDto.getNombre());
+        }
+
+        this.personaDao.save(persona);
+        return Optional.of("OK");
+    }
+
     public List<Persona> getPersonas() {
 
         return this.personaDao.findAll();
+    }
+    
+    public Optional<Persona> getPersona(int id) {
+
+        return this.personaDao.findById(id);
     }
 
     public List<PersonaDto> getPersonasIdUsuario(int idUsuario) {

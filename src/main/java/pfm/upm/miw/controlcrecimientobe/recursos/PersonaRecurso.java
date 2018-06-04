@@ -1,12 +1,14 @@
 package pfm.upm.miw.controlcrecimientobe.recursos;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -73,10 +75,23 @@ public class PersonaRecurso {
 
 
     @GetMapping(value = USUARIO + ID)
-    public List<PersonaDto> getControlesCrecimiento(@PathVariable int id){
+    public List<PersonaDto> getPersonasIdUsuario(@PathVariable int id){
  
       return  this.personaController.getPersonasIdUsuario(id);
     }
+    
+    @GetMapping(value = ID)
+    public Optional<Persona> getPersona(@PathVariable int id){
+ 
+      return  this.personaController.getPersona(id);
+    }
+    
+    @PutMapping(value =  ID)
+    public  Optional<String> actualizarPersona(@PathVariable int id, @RequestBody PersonaDto personaDto ){
+ 
+      return  this.personaController.actualizarPersona(id, personaDto);
+    }
+
 
 
 
