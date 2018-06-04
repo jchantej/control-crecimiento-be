@@ -2,11 +2,13 @@ package pfm.upm.miw.controlcrecimientobe.cotroladores;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import pfm.upm.miw.controlcrecimientobe.daos.IPersonaDao;
 import pfm.upm.miw.controlcrecimientobe.dtos.PersonaDto;
+import pfm.upm.miw.controlcrecimientobe.entidades.ControlCrecimiento;
 import pfm.upm.miw.controlcrecimientobe.entidades.Persona;
 import pfm.upm.miw.controlcrecimientobe.servicios.CalculoEdadServicio;
 
@@ -21,6 +23,26 @@ public class PersonaController {
                 personaDto.getGenero(), personaDto.getGrupoSanguineo(), personaDto.getFoto(), personaDto.getIdUsuario());
 
         this.personaDao.save(persona);
+    }
+
+    public Optional<String> actualizarPersona(int id , PersonaDto personaDto) {
+        Optional<Persona> personaDb = personaDao.findById(id);
+        Persona persona = new Persona();
+        if (personaDb.isPresent()) {
+            persona = personaDb.get();
+            persona.setNombre(personaDto.getNombre());
+            persona.setApellido(personaDto.getApellido());
+            persona.setFechaNacimiento(personaDto.getFechaNacimiento());
+            persona.setFoto(personaDto.getFoto());
+            persona.setGenero(personaDto.getGenero());
+            persona.setGrupoSanguineo(personaDto.getGrupoSanguineo());
+
+        } else {
+            return Optional.of("No data Found >>>Persona Id: " + personaDto.getId() + " " + personaDto.getNombre());
+        }
+
+        this.personaDao.save(persona);
+        return Optional.of("OK");
     }
 
     public List<Persona> getPersonas() {
