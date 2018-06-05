@@ -2,7 +2,10 @@ package pfm.upm.miw.controlcrecimientobe.cotroladores;
 
 
 
-import org.junit.After;
+import static org.junit.Assert.*;
+
+
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+import pfm.upm.miw.controlcrecimientobe.daos.IUsuarioDao;
 import pfm.upm.miw.controlcrecimientobe.dtos.UsuarioDto;
+
 
 
 @RunWith(SpringRunner.class)
@@ -21,26 +26,28 @@ public class UsuarioCotrollerTestIT {
     
     @Autowired
     private UsuarioController usuarioCotroller;
+    @Autowired
+    private IUsuarioDao iUsuarioDao;
 
     private UsuarioDto usuarioDto;
+
+    
+    @Before
+    public void setDb() {
+
+        //TODO: Pendiente de refactorizar test
+        this.usuarioDto = new UsuarioDto("tesst", "test", "test", "test", "test@test.com", "test.jpg");
+
+    }
 
 
     @Test
     public void testCrearUsuario() {
         
-        this.usuarioDto = new UsuarioDto("tesst", "test", "test", "test", "test@test.com", "test.jpg");
-
         usuarioCotroller.crearUsuario(usuarioDto);
-      //  assertEquals("Pablo", iPersonaDao.findById(this.persona.getId()).get().getNombre());
+        assertEquals("tesst", iUsuarioDao.findByUsername("tesst").getUsername());
 
     }
-    
 
-
-  /*  @After
-    public void delete() {
-        this.iUsuarioDao.delete(this.usuario);
-        this.iPersonaDao.delete(this.persona);
-    }*/
 
 }

@@ -118,6 +118,7 @@ public class DatabaseSeederService {
         // Delete Repositories -----------------------------------------------------
         this.iUsuarioRolDao.deleteAll();
         this.iUsuarioDao.deleteAll();
+        this.iRolDao.deleteAll();
         this.iPercentilCrecimientoDao.deleteAll();
         this.iPercentilOmsDao.deleteAll();
         this.iControlCrecimientoDao.deleteAll();
