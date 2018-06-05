@@ -45,7 +45,7 @@ public class PercentilOmsFunctionalTesting {
         
         List<PercentilOms> percentilesOms = Arrays.asList(restService.restBuilder(new RestBuilder<PercentilOms[]>())
                 .clazz(PercentilOms[].class).path(PercentilOmsRecurso.PERCENTILES).path(PercentilOmsRecurso.GENEROTIPO)
-                .param("genero", "M").param("tipo", "P").get().build());
+                .param("genero", "M").param("tipo", "P").param("edad", "50").get().build());
         
         assertEquals("M", percentilesOms.get(0).getGenero());
         assertEquals("P", percentilesOms.get(0).getTipo());
