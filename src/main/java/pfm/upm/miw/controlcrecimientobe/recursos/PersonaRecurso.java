@@ -84,7 +84,7 @@ public class PersonaRecurso {
     }
 
     @PutMapping(value = ID)
-    public Optional<String> actualizarPersona(@PathVariable int id, @RequestBody PersonaDto personaDto) {
+    public Optional<String> editarPersona(@PathVariable int id, @RequestBody PersonaDto personaDto) {
 
         return this.personaController.editarPersona(id, personaDto);
     }
