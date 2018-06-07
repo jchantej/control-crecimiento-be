@@ -1,9 +1,11 @@
 package pfm.upm.miw.controlcrecimientobe.cotroladores;
 
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-
 import pfm.upm.miw.controlcrecimientobe.daos.IRolDao;
 import pfm.upm.miw.controlcrecimientobe.daos.IUsuarioDao;
 import pfm.upm.miw.controlcrecimientobe.daos.IUsuarioRolDao;
@@ -37,6 +39,26 @@ public class UsuarioController {
         usuarioRol.setUsuario(usuario);
         usuarioDao.save(usuario);
         usuarioRolDao.save(usuarioRol);
+
+    }
+
+    public  Optional<String> editarUsuario(String username, UsuarioDto usuarioDto) {
+        Usuario usuario = usuarioDao.findByUsername(username);
+        if (usuario != null) {
+            
+            usuario.setApellido(usuarioDto.getApellido());
+            usuario.setCorreo(usuarioDto.getCorreo());
+            usuario.setFoto(usuarioDto.getFoto());
+            usuario.setNombre(usuarioDto.getNombre());
+            usuario.setPassword(usuarioDto.getPassword());
+            usuario.setUsername(usuarioDto.getUsername());
+            usuarioDao.save(usuario);
+            return Optional.of("OK");
+            
+        }else {
+            
+            return Optional.of("No data Found >>>Usuario username: " + usuarioDto.getUsername());
+        }  
 
     }
 
