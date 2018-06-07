@@ -11,6 +11,7 @@ import pfm.upm.miw.controlcrecimientobe.daos.IUsuarioDao;
 import pfm.upm.miw.controlcrecimientobe.daos.IUsuarioRolDao;
 import pfm.upm.miw.controlcrecimientobe.dtos.UsuarioDto;
 import pfm.upm.miw.controlcrecimientobe.dtos.UsuarioRolDto;
+import pfm.upm.miw.controlcrecimientobe.entidades.Persona;
 import pfm.upm.miw.controlcrecimientobe.entidades.Rol;
 import pfm.upm.miw.controlcrecimientobe.entidades.Usuario;
 import pfm.upm.miw.controlcrecimientobe.entidades.UsuarioRol;
@@ -61,6 +62,26 @@ public class UsuarioController {
         }  
 
     }
+    
+    //TODO: Pendiente eliminar los personas ligadas a la persona
+    @Transactional
+    public Optional<String> eliminarUsuario(String username) {
+        Usuario usuario = usuarioDao.findByUsername(username);
+ 
+      if (usuario != null) {
+          
+          UsuarioRol ur = usuarioRolDao.findByUsuario(usuario);
+          
+          usuarioRolDao.delete(ur);
+          usuarioDao.delete(usuario);
+
+        } else {
+            return Optional.of("No data Found >>>Usuario" );
+        }
+
+        return Optional.of("OK");
+    }
+
 
     public boolean usuarioExistente(String username) {
         Usuario usuario = usuarioDao.findByUsername(username);
