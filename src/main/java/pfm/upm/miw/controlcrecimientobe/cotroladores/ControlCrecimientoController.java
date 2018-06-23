@@ -58,7 +58,8 @@ public class ControlCrecimientoController {
         if (percentilesOmss != null || percentilesOmss.size() > 0) {
 
             for (PercentilOms percentilOms : percentilesOmss) {
-                this.percentilesCrecimiento.add(new PercentilCrecimiento(this.controlCrecimiento, percentilOms, "", ""));
+                this.percentilesCrecimiento.add(new PercentilCrecimiento(this.controlCrecimiento, percentilOms,
+                        EvaluarRangosPercentil(percentilOms, this.controlCrecimiento), ""));
             }
         } else {
 
@@ -75,11 +76,23 @@ public class ControlCrecimientoController {
 
         List<ControlCrecimiento> controlesCrecimiento;
         List<ControlCrecimientoDto> controlesCrecimientoDto = new ArrayList<>();
-        controlesCrecimiento = this.iControlCrecimientoDao.findByPersonaId(idPersona);
-
+        percentilesCrecimiento = new ArrayList<>();
+        controlesCrecimiento = this.iControlCrecimientoDao.findByPersonaIdOrderByFechaRegistroDesc(idPersona);
+       
         for (ControlCrecimiento item : controlesCrecimiento) {
             CalculoEdadServicio calculoEdad = new CalculoEdadServicio(item.getPersona().getFechaNacimiento());
+           
+            percentilesCrecimiento = iPercentilCrecimientoDao.findByControlCrecimiento(item);
             ControlCrecimientoDto cc = new ControlCrecimientoDto();
+            for (PercentilCrecimiento pc : percentilesCrecimiento) {
+                if (pc.getPercentilOms().getTipo().equals("P")) {
+                    cc.setObservacionPeso(pc.getObservacion());
+                }
+                if (pc.getPercentilOms().getTipo().equals("T")) {
+                    cc.setObservacionTalla(pc.getObservacion());
+                }
+
+            }
             cc.setEdad(item.getEdad());
             cc.setEdadPeriodo(Integer.toString(calculoEdad.getEdadPeriodoAnios()) + " años, "
                     + Integer.toString(calculoEdad.getEdadPeriodoMeses()) + " meses");
@@ -105,6 +118,67 @@ public class ControlCrecimientoController {
 
     public boolean notIdPersona(ControlCrecimientoDto controlCrecimientoDto) {
         return controlCrecimientoDto.getIdPersona() <= 0;
+
+    }
+
+    // TODO: Refactorizar luego para ponerlo en una clase independinte como servicio, ademas agregar la recomendacion
+
+    public String EvaluarRangosPercentil(PercentilOms percentilOms, ControlCrecimiento controlCrecimiento) {
+        if (percentilOms.getTipo().equals("P")) {
+            if (controlCrecimiento.getPeso().compareTo(percentilOms.getPercentil3()) <= 0) { // P<=P3
+                return "Por debajo de los pesos establecidos";
+            } else if (controlCrecimiento.getPeso().compareTo(percentilOms.getPercentil3()) == 1
+                    && controlCrecimiento.getPeso().compareTo(percentilOms.getPercentil15()) <= 0) { // P>P3 && P<=15
+
+                return "Un poco bajo de Peso";
+
+            } else if (controlCrecimiento.getPeso().compareTo(percentilOms.getPercentil15()) == 1
+                    && controlCrecimiento.getPeso().compareTo(percentilOms.getPercentil85()) == -1) { // P>P15 && P<85
+
+                return "Peso Normal";
+
+            } else if (controlCrecimiento.getPeso().compareTo(percentilOms.getPercentil85()) >= 0
+                    && controlCrecimiento.getPeso().compareTo(percentilOms.getPercentil97()) == -1) { // P>=P85 && P<97
+
+                return "Un poco subido de Peso";
+
+            } else if (controlCrecimiento.getPeso().compareTo(percentilOms.getPercentil97()) >= 0) { // P>=P97
+
+                return "Por encima de los pesos establecidos";
+
+            } else {
+                return "";
+            }
+
+        } else if (percentilOms.getTipo().equals("T")) {
+            if (controlCrecimiento.getTalla().compareTo(percentilOms.getPercentil3()) <= 0) { // P<=P3
+                return "Por debajo de las tallas establecidas";
+            } else if (controlCrecimiento.getTalla().compareTo(percentilOms.getPercentil3()) == 1
+                    && controlCrecimiento.getTalla().compareTo(percentilOms.getPercentil15()) <= 0) { // P>P3 && P<=15
+
+                return "Un poco bajo de talla";
+
+            } else if (controlCrecimiento.getTalla().compareTo(percentilOms.getPercentil15()) == 1
+                    && controlCrecimiento.getTalla().compareTo(percentilOms.getPercentil85()) == -1) { // P>P15 && P<85
+
+                return "Talla Normal";
+
+            } else if (controlCrecimiento.getTalla().compareTo(percentilOms.getPercentil85()) >= 0
+                    && controlCrecimiento.getTalla().compareTo(percentilOms.getPercentil97()) == -1) { // P>=P85 && P<97
+
+                return "Un poco subido de Talla";
+
+            } else if (controlCrecimiento.getTalla().compareTo(percentilOms.getPercentil97()) >= 0) { // P>=P97
+
+                return "Por encima de las tallas establecidos";
+
+            } else {
+                return "";
+            }
+
+        } else {
+            return "";
+        }
 
     }
 
