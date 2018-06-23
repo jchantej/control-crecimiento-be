@@ -9,7 +9,7 @@ import pfm.upm.miw.controlcrecimientobe.entidades.ControlCrecimiento;
 
 public interface IControlCrecimientoDao extends JpaRepository<ControlCrecimiento, Integer> {    
     
-    public List<ControlCrecimiento> findByPersonaIdOrderByFechaRegistroDesc(int idPersona);
+    public List<ControlCrecimiento> findByPersonaId(int idPersona);
 
 }
 

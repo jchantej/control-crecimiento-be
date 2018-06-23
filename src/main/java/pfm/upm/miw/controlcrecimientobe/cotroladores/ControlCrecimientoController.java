@@ -77,7 +77,7 @@ public class ControlCrecimientoController {
         List<ControlCrecimiento> controlesCrecimiento;
         List<ControlCrecimientoDto> controlesCrecimientoDto = new ArrayList<>();
         percentilesCrecimiento = new ArrayList<>();
-        controlesCrecimiento = this.iControlCrecimientoDao.findByPersonaIdOrderByFechaRegistroDesc(idPersona);
+        controlesCrecimiento = this.iControlCrecimientoDao.findByPersonaId(idPersona);
        
         for (ControlCrecimiento item : controlesCrecimiento) {
             CalculoEdadServicio calculoEdad = new CalculoEdadServicio(item.getPersona().getFechaNacimiento());
