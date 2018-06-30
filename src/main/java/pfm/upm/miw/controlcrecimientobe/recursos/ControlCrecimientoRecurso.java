@@ -52,7 +52,7 @@ public class ControlCrecimientoRecurso {
     }
 
     @PutMapping(value = ID)
-    public Optional<String> editarControlCrecimiento(@PathVariable int id, ControlCrecimientoDto controlCrecimientoDto) {
+    public Optional<String> editarControlCrecimiento(@PathVariable int id, @RequestBody ControlCrecimientoDto controlCrecimientoDto) {
 
         return this.controlCrecimientoController.editarControlCrecimiento(id, controlCrecimientoDto);
     }
