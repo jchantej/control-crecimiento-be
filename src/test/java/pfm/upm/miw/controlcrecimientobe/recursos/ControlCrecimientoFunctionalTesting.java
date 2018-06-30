@@ -48,28 +48,28 @@ public class ControlCrecimientoFunctionalTesting {
 
     @Test
     public void testCrearControlCrecimiento() {
-        restService.restBuilder().path(ControlCrecimientoRecurso.CONTROLES).body(this.controlCrecimientoDto).post().build();
+        restService.restBuilder().basicAuth("admin", "admin").path(ControlCrecimientoRecurso.CONTROLES).body(this.controlCrecimientoDto).post().build();
     }
     
     @Test
     public void testControlCrecimientoNotIdPersonaException() {
         thrown.expect(new HttpMatcher(HttpStatus.BAD_REQUEST));
         this.controlCrecimientoDto.setIdPersona(0);
-        restService.restBuilder().path(ControlCrecimientoRecurso.CONTROLES).body(this.controlCrecimientoDto).post().build();
+        restService.restBuilder().basicAuth("admin", "admin").path(ControlCrecimientoRecurso.CONTROLES).body(this.controlCrecimientoDto).post().build();
     }
     
     @Test
     public void testControlCrecimientoNotTallaException() {
         thrown.expect(new HttpMatcher(HttpStatus.BAD_REQUEST));
         this.controlCrecimientoDto.setTalla(new BigDecimal(0));;
-        restService.restBuilder().path(ControlCrecimientoRecurso.CONTROLES).body(this.controlCrecimientoDto).post().build();
+        restService.restBuilder().basicAuth("admin", "admin").path(ControlCrecimientoRecurso.CONTROLES).body(this.controlCrecimientoDto).post().build();
     }
     
     @Test
     public void testControlCrecimientoNotPesoException() {
         thrown.expect(new HttpMatcher(HttpStatus.BAD_REQUEST));
         this.controlCrecimientoDto.setPeso(null);
-        restService.restBuilder().path(ControlCrecimientoRecurso.CONTROLES).body(this.controlCrecimientoDto).post().build();
+        restService.restBuilder().basicAuth("admin", "admin").path(ControlCrecimientoRecurso.CONTROLES).body(this.controlCrecimientoDto).post().build();
     }
     
 

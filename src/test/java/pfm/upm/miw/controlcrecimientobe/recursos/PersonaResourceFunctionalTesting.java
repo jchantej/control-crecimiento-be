@@ -45,55 +45,55 @@ public class PersonaResourceFunctionalTesting {
 
     @Test
     public void testCrearPersona() {
-        restService.restBuilder().path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
+        restService.restBuilder().basicAuth("admin", "admin").path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
     }
 
     @Test
     public void testCrearPersonaNotDataException() {
         thrown.expect(new HttpMatcher(HttpStatus.BAD_REQUEST));
         PersonaDto personaDtoTest = new PersonaDto();
-        restService.restBuilder().path(PersonaRecurso.PERSONAS).body(personaDtoTest).post().build();
+        restService.restBuilder().basicAuth("admin", "admin").path(PersonaRecurso.PERSONAS).body(personaDtoTest).post().build();
     }
     
     @Test
     public void testCrearPersonaNotNombreException() {
         thrown.expect(new HttpMatcher(HttpStatus.BAD_REQUEST));
         this.personaDto.setNombre("");
-        restService.restBuilder().path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
+        restService.restBuilder().basicAuth("admin", "admin").path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
     }
     @Test
     public void testCrearPersonaNotApellidoException() {
         thrown.expect(new HttpMatcher(HttpStatus.BAD_REQUEST));
         this.personaDto.setApellido(null);
-        restService.restBuilder().path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
+        restService.restBuilder().basicAuth("admin", "admin").path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
     }
 
     @Test
     public void testCrearPersonaNotFechaNacimientoException() {
         thrown.expect(new HttpMatcher(HttpStatus.BAD_REQUEST));
         this.personaDto.setFechaNacimiento(null);
-        restService.restBuilder().path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
+        restService.restBuilder().basicAuth("admin", "admin").path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
     }
 
     @Test
     public void testCrearPersonaNoteneroException() {
         thrown.expect(new HttpMatcher(HttpStatus.BAD_REQUEST));
         this.personaDto.setGenero("");
-        restService.restBuilder().path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
+        restService.restBuilder().basicAuth("admin", "admin").path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
     }
 
     @Test
     public void testCrearPersonaNotGrupoSanguineoException() {
         thrown.expect(new HttpMatcher(HttpStatus.BAD_REQUEST));
         this.personaDto.setGrupoSanguineo(null);
-        restService.restBuilder().path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
+        restService.restBuilder().basicAuth("admin", "admin").path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
     }
     
     @Test
     public void testCrearPersonaNotIdUsuarioException() {
         thrown.expect(new HttpMatcher(HttpStatus.BAD_REQUEST));
         this.personaDto.setIdUsuario(0);
-        restService.restBuilder().path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
+        restService.restBuilder().basicAuth("admin", "admin").path(PersonaRecurso.PERSONAS).body(this.personaDto).post().build();
     }
 
 
