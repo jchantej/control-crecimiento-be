@@ -12,8 +12,12 @@ public class ControlCrecimientoDto {
     private BigDecimal peso;
 
     private BigDecimal talla;
-    
+
     private String edadPeriodo;
+
+    private String observacionPeso;
+
+    private String observacionTalla;
 
     private Date fechaRegistro;
 
@@ -60,8 +64,6 @@ public class ControlCrecimientoDto {
     public void setTalla(BigDecimal talla) {
         this.talla = talla;
     }
-    
-    
 
     public String getEdadPeriodo() {
         return edadPeriodo;
@@ -69,6 +71,24 @@ public class ControlCrecimientoDto {
 
     public void setEdadPeriodo(String edadPeriodo) {
         this.edadPeriodo = edadPeriodo;
+    }
+    
+    
+
+    public String getObservacionPeso() {
+        return observacionPeso;
+    }
+
+    public void setObservacionPeso(String observacionPeso) {
+        this.observacionPeso = observacionPeso;
+    }
+
+    public String getObservacionTalla() {
+        return observacionTalla;
+    }
+
+    public void setObservacionTalla(String observacionTalla) {
+        this.observacionTalla = observacionTalla;
     }
 
     public Date getFechaRegistro() {
@@ -89,8 +109,12 @@ public class ControlCrecimientoDto {
 
     @Override
     public String toString() {
-        return "ControlCrecimientoDto [id=" + id + ", edad=" + edad + ", peso=" + peso + ", talla=" + talla + ", fechaRegistro="
-                + fechaRegistro + ", idPersona=" + idPersona + "]";
+        return "ControlCrecimientoDto [id=" + id + ", edad=" + edad + ", peso=" + peso + ", talla=" + talla + ", edadPeriodo=" + edadPeriodo
+                + ", observacionPeso=" + observacionPeso + ", observacionTalla=" + observacionTalla + ", fechaRegistro=" + fechaRegistro
+                + ", idPersona=" + idPersona + "]";
     }
+    
+
+
 
 }

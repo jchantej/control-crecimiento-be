@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pfm.upm.miw.controlcrecimientobe.cotroladores.UsuarioController;
 import pfm.upm.miw.controlcrecimientobe.dtos.UsuarioDto;
@@ -28,6 +29,8 @@ public class UsuarioRecurso {
     public static final String USERNAME = "/{username}";
 
     public static final String USUARIOROL = "/usuariorol";
+    
+    public static final String LOGIN = "/login";
 
 
     @Autowired
@@ -65,10 +68,10 @@ public class UsuarioRecurso {
 
     }
 
-    @GetMapping(value = USUARIOROL + USERNAME)
-    public UsuarioRolDto getUsuarioRol(@PathVariable String username) {
+    @GetMapping(value = LOGIN)
+    public UsuarioRolDto getUsuarioRol(@RequestParam String username, @RequestParam String password) {
 
-        return this.usuarioController.getUsuarioRol(username);
+        return this.usuarioController.getUsuarioRol(username, password);
 
     }
 

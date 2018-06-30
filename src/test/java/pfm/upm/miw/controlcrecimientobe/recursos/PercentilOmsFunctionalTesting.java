@@ -32,6 +32,7 @@ public class PercentilOmsFunctionalTesting {
     public void testgetAllPercentilOms() {
         
         List<PercentilOms> percentilesOms = Arrays.asList(restService.restBuilder(new RestBuilder<PercentilOms[]>())
+                .basicAuth("admin", "admin")
                 .clazz(PercentilOms[].class).path(PercentilOmsRecurso.PERCENTILES).get()
                 .build());  
         
@@ -44,6 +45,7 @@ public class PercentilOmsFunctionalTesting {
     public void testGetPercentiles() {
         
         List<PercentilOms> percentilesOms = Arrays.asList(restService.restBuilder(new RestBuilder<PercentilOms[]>())
+                .basicAuth("admin", "admin")
                 .clazz(PercentilOms[].class).path(PercentilOmsRecurso.PERCENTILES).path(PercentilOmsRecurso.GENEROTIPO)
                 .param("genero", "M").param("tipo", "P").param("edad", "50").get().build());
         
