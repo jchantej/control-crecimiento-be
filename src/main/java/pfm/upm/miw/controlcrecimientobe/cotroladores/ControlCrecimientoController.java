@@ -72,16 +72,48 @@ public class ControlCrecimientoController {
         return Optional.empty();
     }
 
+    public Optional<String> editarControlCrecimiento(int id, ControlCrecimientoDto controlCrecimientoDto) {
+
+        percentilesCrecimiento = new ArrayList<>();
+        Optional<ControlCrecimiento> controlCrecimientoDb = iControlCrecimientoDao.findById(id);
+        ControlCrecimiento controlCrecimiento = new ControlCrecimiento();
+
+        if (controlCrecimientoDb.isPresent()) {
+
+            controlCrecimiento = controlCrecimientoDb.get();
+            List<PercentilCrecimiento> percentilesCrecimientoDb = iPercentilCrecimientoDao.findByControlCrecimiento(controlCrecimiento);
+            controlCrecimiento.setEdad(controlCrecimientoDto.getEdad());
+            controlCrecimiento.setPeso(controlCrecimientoDto.getPeso());
+            controlCrecimiento.setTalla(controlCrecimientoDto.getTalla());
+            percentilesCrecimiento.addAll(percentilesCrecimientoDb);
+
+            for (int i = 0; i < percentilesCrecimientoDb.size(); i++) {
+
+                percentilesCrecimiento.get(i).setControlCrecimiento(controlCrecimiento);
+                percentilesCrecimiento.get(i)
+                        .setObservacion(EvaluarRangosPercentil(percentilesCrecimiento.get(i).getPercentilOms(), controlCrecimiento));
+
+            }
+
+        } else {
+            return Optional.of("No data Found >>>Control Crecimiento Id: " + controlCrecimientoDto.getId());
+        }
+
+        iPercentilCrecimientoDao.saveAll(percentilesCrecimiento);
+
+        return Optional.of("OK");
+    }
+
     public List<ControlCrecimientoDto> getControlesCrecimiento(int idPersona) {
 
         List<ControlCrecimiento> controlesCrecimiento;
         List<ControlCrecimientoDto> controlesCrecimientoDto = new ArrayList<>();
         percentilesCrecimiento = new ArrayList<>();
         controlesCrecimiento = this.iControlCrecimientoDao.findByPersonaId(idPersona);
-       
+
         for (ControlCrecimiento item : controlesCrecimiento) {
             CalculoEdadServicio calculoEdad = new CalculoEdadServicio(item.getPersona().getFechaNacimiento());
-           
+
             percentilesCrecimiento = iPercentilCrecimientoDao.findByControlCrecimiento(item);
             ControlCrecimientoDto cc = new ControlCrecimientoDto();
             for (PercentilCrecimiento pc : percentilesCrecimiento) {
